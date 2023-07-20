@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>{% block title %}Inicio{% endblock title %}</title>
+    <title>{% block title %}Versiones{% endblock title %}</title>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="icon" href="{% static 'css/logo.png' %}">
-    <link href="{% static 'css/style2.css'%}" rel="stylesheet" />
+    <link href="{% static 'css/style2.css' %}" rel="stylesheet" />
 </head>
 <body>
     {% block body %}
@@ -67,7 +67,7 @@
                             <li><p>Malla Curricular</p></li>
                             <li><p>Microcurrilar</p></li>
                         </ul>
-                        <button class="btn btn-outline-light" type="button"><a href="{% url 'Planificacion'%}">Abrir</a></button>
+                        <button class="btn btn-outline-light" type="button">Abrir</button>
                       </div>
                     </div>
                   </div>
@@ -83,7 +83,7 @@
                             <li><p>Microcurricular 2022</p></li>
                             <li><p>Microcurrilar 2023</p></li>
                         </ul>
-                        <button class="btn btn-outline-light" type="button"><a href="{% url 'Versiones' %}">Abrir</a></button>
+                        <button class="btn btn-outline-light" type="button">Abrir</button>
                       </div>
                     </div>
                   </div>

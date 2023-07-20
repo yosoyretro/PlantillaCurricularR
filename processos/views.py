@@ -14,3 +14,8 @@ def olvidarControseña(request):
 def menuInicio(request):
     return render(request,'dashboard.html',{})
 
+def versiones(request):
+    return render(request, 'versiones.html',{})
+
+def planificacion(request):
+    return render(request, 'planificación.html',{})
