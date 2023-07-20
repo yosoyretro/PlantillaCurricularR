@@ -9,8 +9,8 @@
       <!-- Bootstrap CSS v5.2.1 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <link rel="icon" href="img/logo.ico">
-    <link rel="stylesheet" href="{% static css/style.css}">
+    <link rel="icon" href="{% static 'css/logo.png' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css'}">
 </head>
 <body>
     {% block body %}
@@ -47,6 +47,21 @@
           </div>
         </div>
       </div>
+      <footer>
+        <div class="container">
+          <footer class="py-3 my-4">
+            <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+              <li class="nav-item"><a href="https://istg.edu.ec/historia/" class="nav-link px-2 text-body-secondary">¿Quienes Somos?</b></a></li>
+              <li class="nav-item"><a href="http://siga.institutos.gob.ec:8080/siga-web/ariel.jsf" class="nav-link px-2 text-body-secondary">Siga</a></li>
+              <li class="nav-item"><a href="https://istg.edu.ec/admisiones/" class="nav-link px-2 text-body-secondary">Admisiones</a></li>
+              <li class="nav-item"><a href="https://istg.edu.ec/vinculacion-con-la-comunidad/" class="nav-link px-2 text-body-secondary">Vinculacion</a></li>
+              <li class="nav-item"><a href="https://smartlink.metricool.com/public/smartlink/istg_ec" class="nav-link px-2 text-body-secondary">Redes Sociales</a></li>
+            </ul>
+            <br>
+            <p style="text-align:center">2023 &copy; Todos los derechos reservados</p>
+          </footer>
+        </div>
+      </footer>
     {% endblock body %}
 </body>
 </html>
