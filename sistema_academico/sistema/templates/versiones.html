@@ -5,10 +5,10 @@
     <div class="border-end bg-white" id="sidebar-wrapper">
         <div class="sidebar-heading border-bottom bg-light"><b>ISTG</b></div>
         <div class="list-group list-group-flush">
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Planificacion</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'planificacion' %}">Planificacion</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Editar Datos</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Presentaciones</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Versiones</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'versiones' %}">Versiones</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Perfil</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Estado</a>
         </div>
@@ -20,8 +20,7 @@
             <div class="container-fluid">
                 <button class="btn btn-primary" id="sidebarToggle">Menu</button>
                 <!-- Logo -->
-                <img src="https://istg.edu.ec/wp-content/uploads/2022/04/logo-istg-2.png"
-                    style="max-width: 40%; height: auto;">
+                <img src="{% static 'img/logo2.png' %}" style="max-width: 40%; height: auto;">
                 <!-- Navbar Collapse Button -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -40,7 +39,7 @@
                                 <a class="dropdown-item" href="#!">Perfil</a>
                                 <a class="dropdown-item" href="#!">Configuracion</a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="login.html">Cerrar Sesion</a>
+                                <a class="dropdown-item" href="{% url 'login' %}">Cerrar Sesion</a>
                             </div>
                         </li>
                     </ul>
