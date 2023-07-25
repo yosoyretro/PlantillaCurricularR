@@ -1,5 +1,4 @@
-{% extends 'dashboard.html' %}
-{% load static %}
+{% extends "dashboard.html" %}
 {% block body %}
 <div class="d-flex" id="wrapper">
     <!-- Sidebar-->
@@ -21,6 +20,7 @@
             <div class="container-fluid">
                 <button class="btn btn-primary" id="sidebarToggle">Menu</button>
                 <!-- Logo -->
+                {% load static %}
                 <img src="{% static 'img/logo2.png' %}" style="max-width: 40%; height: auto;">
                 <!-- Navbar Collapse Button -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -58,43 +58,58 @@
                     </li>
                     <li class="breadcrumb-item">
                         <a class="link-body-emphasis fw-semibold text-decoration-none"
-                            href="{% url 'versiones' %}">Versiones</a>
+                            href="{% url 'planificacion' %}">Planificacion</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">
-                        Hisotiral
+                        Datos
                     </li>
                 </ol>
             </nav>
-            <h1 class="mt-4"></h1>
             <div class="row align-items-md-stretch">
-                <div class="col-md-6">
-                    <div class="h-100 p-5 text-bg-dark rounded-3">
-                        <h2><b>Historial</b></h2>
-                        <button id="addbto" class="btn btn-outline-light" type="button">
-                            <i class="material-icons">add</i>
-                            <span class="visually-hidden"></span>
-                        </button>
-                    </div>
-                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <!-- Contenido del modal -->
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Título del Modal</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Contenido del modal aquí...</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                    <button type="button" class="btn btn-primary">Guardar</button>
-                                </div>
-                            </div>
+                <div class="col-md-6 w-100">
+                    <div class="p-5 text-bg-dark rounded-3">
+                        <h2 class="title" style="text-align: center;">Datos</h2><br>
+                        <!--Carrera-->
+                        <div class="select">
+                            <label>Carrera</label>
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>- - -</option>
+                                <option value="1">Marketing</option>
+                                <option value="2">Desarrollo de Software</option>
+                                <option value="3">Diseño Grafico</option>
+                                <option value="4">Impresion Offset</option>
+                            </select>
+                            <br>
+                            <label>Periodo</label>
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>- - -</option>
+                                <option value="1">Primer</option>
+                                <option value="2">Segundo</option>
+                                <option value="3">Tercero</option>
+                                <option value="4">Cuarto</option>
+                                <option value="5">Quinto</option>
+                            </select><br>
+                            <label>Asignatura</label>
+                            <select class="form-select" aria-label="Default select example">
+                                <option selected>- - -</option>
+                                <option value="1">Primer</option>
+                                <option value="2">Segundo</option>
+                                <option value="3">Tercero</option>
+                                <option value="4">Cuarto</option>
+                                <option value="5">Quinto</option>
+                            </select><br>
+                            <label>Codigo</label>
+                            <input type="text" class="form-control rounded-3" id="floatingInput" required
+                                placeholder="Seleccione los campos anteriores" value="" disabled><br>
+                            <label>Pre Requisitos</label>
+                            <input type="text" class="form-control rounded-3" id="floatingInput" required
+                                placeholder="Seleccione los campos anteriores" value="" disabled><br>
+                            <label>Campo de formacion</label>
+                            <input type="text" class="form-control rounded-3" id="floatingInput" required
+                                placeholder="Seleccione los campos anteriores" value="" disabled><br>
+                            <button class="btn btn-primary" type="submit">Guardar</button>
                         </div>
+
                     </div>
                 </div>
             </div>

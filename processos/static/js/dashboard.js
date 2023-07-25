@@ -24,3 +24,17 @@ window.addEventListener('DOMContentLoaded', event => {
     }
 
 });
+
+  // Obtenemos el botón por su ID
+  var addbto = document.getElementById('addbto');
+
+  // Agregamos un evento de clic al botón
+addbto.addEventListener('click', function() {
+    // Obtenemos el modal por su ID
+    var myModal = document.getElementById('myModal');
+    
+    // Mostramos el modal utilizando el método 'modal' de Bootstrap
+    // 'show' es el parámetro que indica que queremos mostrar el modal
+    var modal = new bootstrap.Modal(myModal);
+    modal.show();
+  });
