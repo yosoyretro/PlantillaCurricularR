@@ -14,8 +14,6 @@
 
 <body>
     {% block body %}
-    <form method="post" method="get" action="{% url 'dashboard' %}">
-        {% csrf_token %}
         <div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog"
             id="modalSignin">
             <div class="modal-dialog" role="document">
@@ -28,14 +26,15 @@
                         </div>
                     </div>
                     <div class="modal-body p-5">
-                        <form class="login-box">
+                        <form method="POST" method="get" action="{% url 'login' %}">
+                            {% csrf_token %}
                             <div class="form-floating mb-3">
-                                <input type="email" class="form-control rounded-3" id="floatingInput" required
+                                <input type="text" name="username" class="form-control rounded-3" id="floatingInput" required
                                     placeholder="name@example.com">
                                 <label for="floatingInput">Correo institucional</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="password" class="form-control rounded-3" id="floatingPassword" required
+                                <input type="password" name="password" class="form-control rounded-3" id="floatingPassword" required
                                     placeholder="Password">
                                 <label for="floatingPassword">Contraseña</label>
                             </div>
@@ -43,6 +42,11 @@
                                 <label>
                                     <input type="checkbox" value="remember-me"><b> Recordarme</b></label>
                             </div>
+                            {% if error_message %}
+                            <div class="alert alert-danger" role="alert">
+                            {{ error_message }}
+                            </div>
+                            {% endif %}
                             <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">Iniciar</button>
                             <hr class="my-4">
                             <small class="text-body-secondary"><a href="{% url 'forgot' %}">¿Olvidaste tu
@@ -52,7 +56,6 @@
                 </div>
             </div>
         </div>
-    </form>
     <footer>
         <div class="container">
             <footer class="py-3 my-4">

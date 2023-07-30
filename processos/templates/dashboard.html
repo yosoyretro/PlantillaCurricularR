@@ -19,12 +19,13 @@
         <div class="border-end bg-white" id="sidebar-wrapper">
             <div class="sidebar-heading border-bottom bg-light"><b>ISTG</b></div>
             <div class="list-group list-group-flush">
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'planificacion' %}">Planificacion</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'dashboard' %}">Home</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'asignatura' %}">Asignatura</a>
                 <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Editar Datos</a>
                 <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Presentaciones</a>
                 <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'versiones' %}">Versiones</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Perfil</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Estado</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'trabajador' %}">Crear Trabajador</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'referencias' %}">Crear Referencias</a>
             </div>
         </div>
         <!-- Page content wrapper-->
@@ -46,36 +47,24 @@
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
                             <li class="nav-item active"><a class="nav-link" href="{% url 'dashboard' %}">Inicio</a></li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Usuario</a>
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#!">Perfil</a>
-                                    <a class="dropdown-item" href="#!">Configuracion</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="{% url 'login' %}">Cerrar Sesion</a>
-                                </div>
-                            </li>
+                            <li class="nav-item active"><a class="nav-link" href="{% url 'login' %}">Cerrar Sesion</a></li>
                         </ul>
                     </div>
                 </div>
             </nav>
             <div class="container-fluid">
-                <h1 class="mt-4">Bienvenido al sistema Academico</h1>
+                <h1 class="mt-4">BIENVENIDO AL SISTEMA</h1>
                 <div class="row align-items-md-stretch">
                     <div class="col-md-6">
                         <div class="h-100 p-5 text-bg-dark rounded-3">
-                            <h2><b>Planificacion</b></h2>
+                            <h2><b>Asignatura</b></h2>
                             <ul>
                                 <li>
-                                    <p>Malla Curricular</p>
-                                </li>
-                                <li>
-                                    <p>Microcurrilar</p>
+                                    <p>Creación de la asignatura</p>
                                 </li>
                             </ul>
                             <button class="btn btn-outline-light" type="button"><a
-                                    href="{% url 'planificacion' %}">Abrir</a></button>
+                                    href="{% url 'asignatura' %}">Abrir</a></button>
                         </div>
                     </div>
                 </div>
@@ -85,20 +74,14 @@
                 <div class="row align-items-md-stretch">
                     <div class="col-md-6">
                         <div class="h-100 p-5 text-bg-dark rounded-3">
-                            <h2><b>Versiones</b></h2>
+                            <h2><b>Crear Trabajador</b></h2>
                             <ul>
                                 <li>
-                                    <p>Malla Curricular (no editatble)</p>
-                                </li>
-                                <li>
-                                    <p>Microcurricular 2022</p>
-                                </li>
-                                <li>
-                                    <p>Microcurrilar 2023</p>
+                                    <p>Creación de usuarios(Trabajador)</p>
                                 </li>
                             </ul>
                             <button class="btn btn-outline-light" type="button"><a
-                                    href="{% url 'versiones' %}">Abrir</a></button>
+                                    href="{% url 'trabajador' %}">Abrir</a></button>
                         </div>
                     </div>
                 </div>

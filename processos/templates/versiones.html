@@ -6,12 +6,13 @@
     <div class="border-end bg-white" id="sidebar-wrapper">
         <div class="sidebar-heading border-bottom bg-light"><b>ISTG</b></div>
         <div class="list-group list-group-flush">
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'planificacion' %}">Planificacion</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'dashboard' %}">Home</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'asignatura' %}">Asignatura</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Editar Datos</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Presentaciones</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'versiones' %}">Versiones</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Perfil</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Estado</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'trabajador' %}">Crear trabajador</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'referencias' %}">Crear Referencias</a>
         </div>
     </div>
     <!-- Page content wrapper-->
@@ -97,8 +98,28 @@
                         </div>
                     </div>
                 </div>
+                <div id="cambios"></div>
             </div>
         </div>
     </div>
 </div>
+<script>
+  // Función para mostrar los cambios en el cuadro de "cambios"
+  function mostrarCambios(cambio) {
+    var cambiosDiv = document.getElementById("cambios");
+    cambiosDiv.innerHTML += "<p>" + cambio + "</p>";
+  }
+
+  // Función que se ejecutará cada vez que haya un cambio en la página
+  function registrarCambio(evento) {
+    var cambio = evento.target.tagName + " " + evento.target.id + " ha sido modificado.";
+    mostrarCambios(cambio);
+  }
+
+  // Agregar un eventListener a todos los elementos de la página
+  var elementos = document.getElementsByTagName("*");
+  for (var i = 0; i < elementos.length; i++) {
+    elementos[i].addEventListener("change", registrarCambio);
+  }
+</script>
 {% endblock body %}

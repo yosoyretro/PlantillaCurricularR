@@ -1,0 +1,95 @@
+{% extends "dashboard.html" %}
+{% block body %}
+<div class="d-flex" id="wrapper">
+    <!-- Sidebar-->
+    <div class="border-end bg-white" id="sidebar-wrapper">
+        <div class="sidebar-heading border-bottom bg-light"><b>ISTG</b></div>
+        <div class="list-group list-group-flush">
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'dashboard' %}">Home</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'asignatura' %}">Asignatura</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Editar Datos</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Presentaciones</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'versiones' %}">Versiones</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'trabajador' %}">Crear trabajador</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'referencias' %}">Crear Referencias</a>
+        </div>
+    </div>
+    <!-- Page content wrapper-->
+    <div id="page-content-wrapper">
+        <!-- Top navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+            <div class="container-fluid">
+                <button class="btn btn-primary" id="sidebarToggle">Menu</button>
+                <!-- Logo -->
+                {% load static %}
+                <img src="{% static 'img/logo2.png' %}" style="max-width: 40%; height: auto;">
+                <!-- Navbar Collapse Button -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Navbar Links -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                        <li class="nav-item active"><a class="nav-link" href="{% url 'dashboard' %}">Inicio</a></li>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb p-3 bg-body-tertiary rounded-3">
+                    <li class="breadcrumb-item">
+                        <a class="link-body-emphasis" href="{% url 'dashboard' %}">
+                            <i class="material-icons">home</i>
+                            <span class="visually-hidden"></span>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a class="link-body-emphasis fw-semibold text-decoration-none"
+                            href="{% url 'asignatura' %}">ASIGNATURA</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        Crear trabajador
+                    </li>
+                </ol>
+            </nav>
+            <div class="row align-items-md-stretch">
+                <div class="col-md-6 w-100">
+                    <div class="p-5 text-bg-dark rounded-3">
+                        <h2 class="title" style="text-align: center;">Crear Trabajador</h2><br>
+                        <!--Carrera-->
+                        <form method="post" >
+                            <div class="select">
+                                <label>Nombres *</label>
+                                <input type="text" class="form-control rounded-3" name="nombres_trab" id="floatingInput" placeholder="Ingrese los Nombres" required>
+                                <br>
+                                <label>Apellidos *</label>
+                                <input type="text" class="form-control rounded-3" name="apellidos_trab" id="floatingInput" placeholder="Ingrese los Apellidos" required><br>
+                                <label>Cédula de identidad *</label>
+                                <input type="text" class="form-control rounded-3" name="cedula_trab" id="floatingInput" placeholder="Ingrese la Cédula" required><br>
+                                <label>Correo *</label>
+                                <input type="text" class="form-control rounded-3" name="correo_trab" id="floatingInput"
+                                    placeholder="Ingrese el Correo" required><br>
+                                <label>Contraseña *</label>
+                                <input type="text" class="form-control rounded-3" name="contrasena_trab id="floatingInput"
+                                    placeholder="Ingrese la Contraseña" required><br>
+                                <label>Rol del Trabajador *</label>
+                                <select class="form-select" name="periodo" aria-label="Default select example">
+                                    <option selected>Selecione el Rol</option>
+                                    <option value="1">Profesor</option>
+                                    <option value="2">Admin</option>
+                                </select><br>
+                                <button class="btn btn-primary" type="submit">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}
