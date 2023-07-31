@@ -63,6 +63,7 @@
                         <h2 class="title" style="text-align: center;">Crear Trabajador</h2><br>
                         <!--Carrera-->
                         <form method="post" >
+                            {% csrf_token %}
                             <div class="select">
                                 <label>Nombres *</label>
                                 <input type="text" class="form-control rounded-3" name="nombres_trab" id="floatingInput" placeholder="Ingrese los Nombres" required>
@@ -75,17 +76,22 @@
                                 <input type="text" class="form-control rounded-3" name="correo_trab" id="floatingInput"
                                     placeholder="Ingrese el Correo" required><br>
                                 <label>Contraseña *</label>
-                                <input type="text" class="form-control rounded-3" name="contrasena_trab id="floatingInput"
+                                <input type="text" class="form-control rounded-3" name="contrasena_trab" id="floatingInput"
                                     placeholder="Ingrese la Contraseña" required><br>
                                 <label>Rol del Trabajador *</label>
-                                <select class="form-select" name="periodo" aria-label="Default select example">
+                                <select class="form-select" name="rol_trab" aria-label="Default select example">
                                     <option selected>Selecione el Rol</option>
                                     <option value="1">Profesor</option>
                                     <option value="2">Admin</option>
                                 </select><br>
-                                <button class="btn btn-primary" type="submit">Guardar</button>
+                                <button class="btn btn-primary" name="crear" type="submit">Guardar</button>
                             </div>
                         </form>
+                        {% if msg %}
+                            <div class="alert alert-success" role="alert">
+                                {{ msg }}
+                            </div>
+                        {% endif %}
                     </div>
                 </div>
             </div>
