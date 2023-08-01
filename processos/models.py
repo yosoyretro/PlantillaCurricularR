@@ -34,14 +34,10 @@ class Referencias(models.Model):
 
 class ProductoAcademico(models.Model):
     id = models.IntegerField(primary_key=True)
+    producto_final = models.CharField(max_length=500)
     objetivo = models.TextField()
     producto_parcial = models.TextField()
     presentacion = models.TextField()
     integracion = models.TextField()
     estado = models.CharField(max_length=3, default='A')
 
-class Unidad(models.Model):
-    id = models.IntegerField(primary_key=True)
-    nombre_unidad = models.CharField(max_length=200)
-    objetivo = models.TextField()
-    contenidos = models.CharField(max_length=500)

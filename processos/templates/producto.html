@@ -65,17 +65,17 @@
                             {% csrf_token %}
                             <div class="select">
                                 <label>PRODUCTO ACADÉMICO FINAL DE LA ASIGNATURA *</label>
-                                <input type="text" class="form-control rounded-3" name="nombre_asig" id="floatingInput" placeholder="Ingrese nombre de la asignatura" required>
+                                <input type="text" class="form-control rounded-3" name="producto_final" id="floatingInput" placeholder="Ingrese nombre de la asignatura" required>
                                 <br>
                                 <label>Objetivo *</label>
-                                <input type="text" class="form-control rounded-3" name="objetivo_asig" id="floatingInput" placeholder="Ingrese objetivo de la asignatura" required><br>
+                                <input type="text" class="form-control rounded-3" name="objetivo" id="floatingInput" placeholder="Ingrese objetivo de la asignatura" required><br>
                                 <label>Productos Parciales *</label>
-                                <input type="text" class="form-control rounded-3" name="aportes_teori" id="floatingInput" placeholder="Ingrese los aportes teoricos" required><br>
+                                <input type="text" class="form-control rounded-3" name="producto_parci" id="floatingInput" placeholder="Ingrese los aportes teoricos" required><br>
                                 <label>Resultados y Estándares de Presentación *</label>
-                                <input type="text" class="form-control rounded-3" name="objetivos_especi" id="floatingInput"
+                                <input type="text" class="form-control rounded-3" name="resultados_presen" id="floatingInput"
                                     placeholder="Ingrese los objetivos específicos" required><br>
                                 <label>Integración con otras asignaturas *</label>
-                                <input type="text" class="form-control rounded-3" name="producto_academ" id="floatingInput"
+                                <input type="text" class="form-control rounded-3" name="integracion_asigna" id="floatingInput"
                                     placeholder="Ingrese la descripción del Producto Académico" required><br>
                                 <button class="btn btn-primary" type="submit" name="crear">Guardar</button>
                             </div>
@@ -85,6 +85,17 @@
                                 {{ msg }}
                             </div>
                         {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-md-stretch">
+                <div class="col-md-6 w-100">
+                    <div class="p-5 text-bg-dark rounded-3">
+                        <ul>
+                            {% for producto in datosProducto %}
+                            <li>{{ producto.producto_final }} - {{ trabajador.objetivo }} - {{ trabajador.producto_parcial }} {{ producto.presentacion }} - {{producto.integracion}}</li>
+                            {% endfor %}
+                        </ul>
                     </div>
                 </div>
             </div>

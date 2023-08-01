@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from .models import Trabajador, Asignatura, Referencias
+from .models import Trabajador, Asignatura, Referencias, ProductoAcademico
 
 # Create your views here.
 def login_view(request):
@@ -64,7 +64,25 @@ def trabajador_view(request):
     return render(request, 'Registrar.html', {'datosTrabajador': datosTrabajador, 'msg': msg})
 
 def producto_view(request):
-    return render(request, 'producto.html',{})    
+    datosProducto = ProductoAcademico.objects.filter(estado='A')
+    msg = ''
+
+    if request.method == 'POST' and "crear" in request.POST:
+        producto_f = request.POST["producto_final"]
+        objetivo_p = request.POST["objetivo"]
+        producto_p = request.POST["producto_parci"]
+        resultados_p = request.POST["resultados_presen"]
+        integracion_as = request.POST["integracion_asigna"]
+
+        producto = ProductoAcademico(
+            producto_final=producto_f,
+            objetivo=objetivo_p,
+            producto_parcial=producto_p,
+            presentacion=resultados_p,
+            integracion=integracion_as
+        )
+        producto.save()
+    return render(request, 'producto.html',{'datosProducto': datosProducto, 'msg':msg})    
 
 def referencias_view(request):
     datosReferencias = Referencias.objects.filter(estado='A')
