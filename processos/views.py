@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from .models import Trabajador
+from .models import Trabajador, Asignatura, Referencias
 
 # Create your views here.
 def login_view(request):
@@ -15,11 +15,34 @@ def dashboard_view(request):
     return render(request, 'dashboard.html',{})
 
 def asignatura_view(request):
-    return render(request, 'asignatura.html',{})
+    datosAsignatura = Asignatura.objects.filter(estado='A')
+    msg = ""
+
+    if request.method == 'POST' and "crear" in request.POST:
+        asignatura = request.POST["nombre_asig"]
+        objetivo = request.POST["objetivo_asig"]
+        aportes = request.POST["aportes_teori"]
+        objetivos_es = request.POST["objetivos_especi"]
+        producto_ac = request.POST["producto_academ"]
+        prerequisitos = request.POST["prerequisitos_acade"]
+        periodo_a = request.POST["periodo_asig"]
+
+        asignatura = Asignatura(
+            nombre_asignatura=asignatura,
+            objetivo_asignatura=objetivo,
+            aportes_teoricos=aportes,
+            objetivos_especificos=objetivos_es,
+            producto_academico=producto_ac,
+            prerequisito_academico=prerequisitos,
+            periodo=periodo_a
+        )
+        asignatura.save() 
+    return render(request, 'asignatura.html',{'datosAsignatura':
+    datosAsignatura, 'msg': msg})
 
 def trabajador_view(request):
     datosTrabajador = Trabajador.objects.filter(estado='A')
-    msg = "Registro exitoso"
+    msg = ""
 
     if request.method == 'POST' and "crear" in request.POST:
         nombres_trab = request.POST["nombres_trab"]
@@ -40,8 +63,27 @@ def trabajador_view(request):
         trabajador.save()
     return render(request, 'Registrar.html', {'datosTrabajador': datosTrabajador, 'msg': msg})
 
-def versiones_view(request):
-    return render(request, 'versiones.html',{})    
+def producto_view(request):
+    return render(request, 'producto.html',{})    
 
 def referencias_view(request):
-    return render(request, 'referencias.html',{})
+    datosReferencias = Referencias.objects.filter(estado='A')
+    msg = ""
+
+    if request.method == 'POST' and "crear" in request.POST:
+        referencia = request.POST["tipo_referen"]
+        numero_ref = request.POST["numero_referen"]
+        titulo = request.POST["titulo_obra"]
+        biblioteca = request.POST["existencia_biblioteca"]
+        numero = request.POST["numero_ejemplar"]
+
+        referencias = Referencias(
+            tipo_referencia=referencia,
+            numero_referencia=numero_ref,
+            titulo_obra=titulo,
+            existencia_biblioteca=biblioteca,
+            numero_ejemplares=numero
+        )
+        referencias.save()
+    return render(request, 'referencias.html',{'datosReferencias':
+    datosReferencias, 'msg': msg})

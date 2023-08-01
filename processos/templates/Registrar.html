@@ -6,11 +6,11 @@
         <div class="sidebar-heading border-bottom bg-light"><b>ISTG</b></div>
         <div class="list-group list-group-flush">
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'dashboard' %}">Home</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'trabajador' %}">Crear trabajador</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'asignatura' %}">Asignatura</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Editar Datos</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Presentaciones</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'versiones' %}">Versiones</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'trabajador' %}">Crear trabajador</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'producto' %}">Productos Acádemicos</a>
             <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'referencias' %}">Crear Referencias</a>
         </div>
     </div>
@@ -50,7 +50,7 @@
                     </li>
                     <li class="breadcrumb-item">
                         <a class="link-body-emphasis fw-semibold text-decoration-none"
-                            href="{% url 'asignatura' %}">ASIGNATURA</a>
+                            href="{% url 'trabajador' %}">Trabajador</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">
                         Crear trabajador
@@ -60,7 +60,7 @@
             <div class="row align-items-md-stretch">
                 <div class="col-md-6 w-100">
                     <div class="p-5 text-bg-dark rounded-3">
-                        <h2 class="title" style="text-align: center;">Crear Trabajador</h2><br>
+                        <h2 class="title" style="text-align: center;">Trabajador</h2><br>
                         <!--Carrera-->
                         <form method="post" >
                             {% csrf_token %}
@@ -85,13 +85,23 @@
                                     <option value="2">Admin</option>
                                 </select><br>
                                 <button class="btn btn-primary" name="crear" type="submit">Guardar</button>
-                            </div>
                         </form>
                         {% if msg %}
                             <div class="alert alert-success" role="alert">
                                 {{ msg }}
                             </div>
                         {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-md-stretch">
+                <div class="col-md-6 w-100">
+                    <div class="p-5 text-bg-dark rounded-3">
+                        <ul>
+                            {% for trabajador in datosTrabajador %}
+                            <li>{{ trabajador.nombres }} {{ trabajador.apellidos }} - {{ trabajador.cedula_identidad }}</li>
+                            {% endfor %}
+                        </ul>
                     </div>
                 </div>
             </div>

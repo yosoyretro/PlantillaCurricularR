@@ -25,7 +25,7 @@ urlpatterns = [
     path('dashboard/', views.dashboard_view, name='dashboard'),
     path('asignatura/', views.asignatura_view, name='asignatura'),
     path('trabajador', views.trabajador_view, name='trabajador'),
-    path('versiones/', views.versiones_view, name='versiones'),
+    path('producto/', views.producto_view, name='producto'),
     path('referencias/', views.referencias_view, name='referencias'),
     path('admin/', admin.site.urls),
 ]
