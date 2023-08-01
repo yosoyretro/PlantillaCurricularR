@@ -218,7 +218,7 @@ blockquote {
 b,
 strong {
   font-weight: bolder;
-  color:#55575a
+  color:#007aff
 }
 small, .small {
   font-size: 0.875em;
@@ -247,7 +247,7 @@ sup {
 
 a {
   color: var(--bs-link-color);
-  text-decoration: underline;
+  text-decoration: none;
 }
 a:hover {
   color: var(--bs-link-hover-color);
@@ -2849,7 +2849,7 @@ textarea.form-control-lg {
 
 .btn-primary {
   --bs-btn-color: #000;
-  --bs-btn-bg: #eddbdb;
+  --bs-btn-bg: #fff;
   --bs-btn-border-color: #c7ccd4;
   --bs-btn-hover-color: #fff;
   --bs-btn-hover-bg: #a39999;
@@ -6694,7 +6694,7 @@ textarea.form-control-lg {
 }
 
 .text-bg-dark {
-  color: #000000;
+  color: #007aff;
   background-color: #e5e5e5;
 }
 
@@ -10869,4 +10869,7 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
 }
 .select {
   color: #007aff;
+}
+.fas.fa-bars {
+  font-size: 24px; /* Ajusta el tamaño según tus preferencias */
 }
