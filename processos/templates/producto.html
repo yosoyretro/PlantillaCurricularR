@@ -1,108 +1,72 @@
 {% extends "dashboard.html" %}
-{% block body %}
+{% block content %}
 <div class="d-flex" id="wrapper">
-    <!-- Sidebar-->
-    <div class="border-end bg-white" id="sidebar-wrapper">
-        <div class="sidebar-heading border-bottom bg-light"><b>ISTG</b></div>
-        <div class="list-group list-group-flush">
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'dashboard' %}">Home</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'trabajador' %}">Crear trabajador</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'asignatura' %}">Asignatura</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Editar Datos</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Presentaciones</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'producto' %}">Productos Acádemicos</a>
-            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'referencias' %}">Crear Referencias</a>
-        </div>
-    </div>
-    <!-- Page content wrapper-->
-    <div id="page-content-wrapper">
-        <!-- Top navigation-->
-        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-            <div class="container-fluid">
-                <button class="btn btn-primary" id="sidebarToggle">
-                    <span class="navbar-toggler-icon"></span><!-- Esta clase representa el ícono de menú hamburguesa -->
-                </button>
-                <!-- Logo -->
-                {% load static %}
-                <img src="{% static 'img/logo2.png' %}" style="max-width: 40%; height: auto;">
-                <!-- Navbar Collapse Button -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <!-- Navbar Links -->
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-                        <li class="nav-item active"><a class="nav-link" href="{% url 'dashboard' %}">Inicio</a></li>
-                        <li class="nav-item active"><a class="nav-link" href="{% url 'login' %}">Cerrar Sesion</a></li>
-                    </ul>
-                </div>
-            </div>
+    <div class="container-fluid">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb p-3 bg-body-tertiary rounded-3">
+                <li class="breadcrumb-item">
+                    <a class="link-body-emphasis" href="{% url 'dashboard' %}">
+                        <i class="material-icons">home</i>
+                        <span class="visually-hidden"></span>
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a class="link-body-emphasis fw-semibold text-decoration-none"
+                        href="{% url 'producto' %}">Producto</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    Crear Productos
+                </li>
+            </ol>
         </nav>
-        <div class="container-fluid">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb p-3 bg-body-tertiary rounded-3">
-                    <li class="breadcrumb-item">
-                        <a class="link-body-emphasis" href="{% url 'dashboard' %}">
-                            <i class="material-icons">home</i>
-                            <span class="visually-hidden"></span>
-                        </a>
-                    </li>
-                    <li class="breadcrumb-item">
-                        <a class="link-body-emphasis fw-semibold text-decoration-none"
-                            href="{% url 'asignatura' %}">Producto</a>
-                    </li>
-                    <li class="breadcrumb-item active" aria-current="page">
-                        Crear Productos
-                    </li>
-                </ol>
-            </nav>
-            <div class="row align-items-md-stretch">
-                <div class="col-md-6 w-100">
-                    <div class="p-5 text-bg-dark rounded-3">
-                        <h2 class="title" style="text-align: center;">Productos Acádemicos</h2><br>
-                        <!--Carrera-->
-                        <form method="post" >
-                            {% csrf_token %}
-                            <div class="select">
-                                <label>PRODUCTO ACADÉMICO FINAL DE LA ASIGNATURA *</label>
-                                <input type="text" class="form-control rounded-3" name="producto_final" id="floatingInput" placeholder="Ingrese nombre de la asignatura" required>
-                                <br>
-                                <label>Objetivo *</label>
-                                <input type="text" class="form-control rounded-3" name="objetivo" id="floatingInput" placeholder="Ingrese objetivo de la asignatura" required><br>
-                                <label>Productos Parciales *</label>
-                                <input type="text" class="form-control rounded-3" name="producto_parci" id="floatingInput" placeholder="Ingrese los aportes teoricos" required><br>
-                                <label>Resultados y Estándares de Presentación *</label>
-                                <input type="text" class="form-control rounded-3" name="resultados_presen" id="floatingInput"
-                                    placeholder="Ingrese los objetivos específicos" required><br>
-                                <label>Integración con otras asignaturas *</label>
-                                <input type="text" class="form-control rounded-3" name="integracion_asigna" id="floatingInput"
-                                    placeholder="Ingrese la descripción del Producto Académico" required><br>
-                                <button class="btn btn-primary" type="submit" name="crear">Guardar</button>
-                            </div>
-                        </form>
-                        {% if msg %}
-                            <div class="alert alert-success" role="alert">
-                                {{ msg }}
-                            </div>
-                        {% endif %}
+        <div class="row align-items-md-stretch">
+            <div class="col-md-6 w-100">
+                <div class="p-5 text-bg-dark rounded-3">
+                    <h2 class="title" style="text-align: center;">Productos Acádemicos</h2><br>
+                    <!--Carrera-->
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="select">
+                            <label>PRODUCTO ACADÉMICO FINAL DE LA ASIGNATURA *</label>
+                            <input type="text" class="form-control rounded-3" name="producto_final" id="floatingInput"
+                                placeholder="Ingrese nombre de la asignatura" required>
+                            <br>
+                            <label>Objetivo *</label>
+                            <input type="text" class="form-control rounded-3" name="objetivo" id="floatingInput"
+                                placeholder="Ingrese objetivo de la asignatura" required><br>
+                            <label>Productos Parciales *</label>
+                            <input type="text" class="form-control rounded-3" name="producto_parci" id="floatingInput"
+                                placeholder="Ingrese los aportes teoricos" required><br>
+                            <label>Resultados y Estándares de Presentación *</label>
+                            <input type="text" class="form-control rounded-3" name="resultados_presen"
+                                id="floatingInput" placeholder="Ingrese los objetivos específicos" required><br>
+                            <label>Integración con otras asignaturas *</label>
+                            <input type="text" class="form-control rounded-3" name="integracion_asigna"
+                                id="floatingInput" placeholder="Ingrese la descripción del Producto Académico"
+                                required><br>
+                            <button class="btn btn-primary" type="submit" name="crear">Guardar</button>
+                        </div>
+                    </form>
+                    {% if msg %}
+                    <div class="alert alert-success" role="alert">
+                        {{ msg }}
                     </div>
+                    {% endif %}
                 </div>
             </div>
-            <div class="row align-items-md-stretch">
-                <div class="col-md-6 w-100">
-                    <div class="p-5 text-bg-dark rounded-3">
-                        <ul>
-                            {% for producto in datosProducto %}
-                            <li>{{ producto.producto_final }} - {{ trabajador.objetivo }} - {{ trabajador.producto_parcial }} {{ producto.presentacion }} - {{producto.integracion}}</li>
-                            {% endfor %}
-                        </ul>
-                    </div>
+        </div>
+        <div class="row align-items-md-stretch">
+            <div class="col-md-6 w-100">
+                <div class="p-5 text-bg-dark rounded-3">
+                    <ul>
+                        {% for producto in datosProducto %}
+                        <li>{{ producto.producto_final }} - {{ trabajador.objetivo }} - {{ trabajador.producto_parcial
+                            }} {{ producto.presentacion }} - {{producto.integracion}}</li>
+                        {% endfor %}
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
 </div>
-{% endblock body %}
+{% endblock content %}
