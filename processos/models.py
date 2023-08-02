@@ -41,3 +41,31 @@ class ProductoAcademico(models.Model):
     integracion = models.TextField()
     estado = models.CharField(max_length=3, default='A')
 
+
+class unidades(models.Model):
+    id = models.IntegerField(primary_key=True)
+    nombre_unidad = models.CharField(max_length=200)
+    objetivo_unidad = models.CharField(max_length=650)
+    numero_unidad = models.IntegerField()
+    horas_docencia = models.IntegerField()
+    horas_practica = models.IntegerField()
+    estado = models.CharField(max_length=3, default='A')
+
+class Contenido(models.Model):
+    id = models.IntegerField(primary_key=True)
+    nombre_contenido = models.CharField(max_length=200)
+    numero_contenido = models.IntegerField()
+    estado = models.CharField(max_length=3, default='A')
+
+class versiontest(models.Model):
+    id = models.IntegerField(primary_key=True)
+    nombre_version = models.CharField(max_length=200)
+    fecha_creacion = models.DateField()
+    estado = models.CharField(max_length=3, default='A')
+
+class responsables(models.Model):
+    id = models.IntegerField(primary_key=True)
+    nombre_responsable = models.CharField(max_length=200)
+    cargo_responsable = models.CharField(max_length=200)
+    firma_responsable = models.CharField(max_length=200)
+    estado = models.CharField(max_length=3, default='A')
