@@ -1,64 +1,103 @@
 {% extends "dashboard.html" %}
-{% block content %}
+{% block body %}
 <div class="d-flex" id="wrapper">
-    <div class="container-fluid">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb p-3 bg-body-tertiary rounded-3">
-                <li class="breadcrumb-item">
-                    <a class="link-body-emphasis" href="{% url 'dashboard' %}">
-                        <i class="material-icons">home</i>
-                        <span class="visually-hidden"></span>
-                    </a>
-                </li>
-                <li class="breadcrumb-item">
-                    <a class="link-body-emphasis fw-semibold text-decoration-none"
-                        href="{% url 'referencias' %}">Referencia</a>
-                </li>
-                <li class="breadcrumb-item active" aria-current="page">
-                    Crear Referencias
-                </li>
-            </ol>
+    <!-- Sidebar-->
+    <div class="border-end bg-white" id="sidebar-wrapper">
+        <div class="sidebar-heading border-bottom bg-light"><b>ISTG</b></div>
+        <div class="list-group list-group-flush">
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'dashboard' %}">Home</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'trabajador' %}">Crear trabajador</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'asignatura' %}">Asignatura</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Editar Datos</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Presentaciones</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'producto' %}">Productos Acádemicos</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'referencias' %}">Crear Referencias</a>
+        </div>
+    </div>
+    <!-- Page content wrapper-->
+    <div id="page-content-wrapper">
+        <!-- Top navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+            <div class="container-fluid">
+                <button class="btn btn-primary" id="sidebarToggle">
+                    <span class="navbar-toggler-icon"></span><!-- Esta clase representa el ícono de menú hamburguesa -->
+                </button>
+                <!-- Logo -->
+                {% load static %}
+                <img src="{% static 'img/logo2.png' %}" style="max-width: 40%; height: auto;">
+                <!-- Navbar Collapse Button -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Navbar Links -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                        <li class="nav-item active"><a class="nav-link" href="{% url 'dashboard' %}">Inicio</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="{% url 'login' %}">Cerrar Sesion</a></li>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </nav>
-        <div class="row align-items-md-stretch">
-            <div class="col-md-6 w-100">
-                <div class="p-5 text-bg-dark rounded-3">
-                    <h2 class="title" style="text-align: center;">Referencias</h2><br>
-                    <!--Carrera-->
-                    <form method="post">
-                        {% csrf_token %}
-                        <div class="select">
-                            <label>Tipo de Referencia *</label>
-                            <select class="form-select" name="tipo_referen" aria-label="Default select example">
-                                <option selected>Selecione el Tipo de Referencia</option>
-                                <option value="1">Básica</option>
-                                <option value="2">Complementaria</option>
-                                <option value="2">Sitios web</option>
-                            </select><br>
-                            <label>Número *</label>
-                            <input type="number" class="form-control rounded-3" name="numero_referen" id="floatingInput"
-                                min="0" placeholder="Ingrese la cantidad" required><br>
-                            <label>Títtulo de la obra *</label>
-                            <input type="text" class="form-control rounded-3" name="titulo_obra" id="floatingInput"
-                                placeholder="Ingrese el Nombre del Título de la obra" required><br>
-                            <label>Existencia en Biblioteca *</label>
-                            <input type="text" class="form-control rounded-3" name="existencia_biblioteca"
-                                id="floatingInput"
-                                placeholder="Definir si es Física o Digital(Si no existe ponga 'No existe en la Biblioteca')"
-                                required><br>
-                            <label>Numero de ejemplares*</label>
-                            <input type="number" class="form-control rounded-3" name="numero_ejemplar"
-                                id="floatingInput" min="0" placeholder="Ingrese la cantidad" required><br>
-                            <button class="btn btn-primary" type="submit" name="crear">Guardar</button>
-                        </div>
-                    </form>
-                    {% if msg %}
-                    <div class="alert alert-success" role="alert">
-                        {{ msg }}
+        <div class="container-fluid">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb p-3 bg-body-tertiary rounded-3">
+                    <li class="breadcrumb-item">
+                        <a class="link-body-emphasis" href="{% url 'dashboard' %}">
+                            <i class="material-icons">home</i>
+                            <span class="visually-hidden"></span>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a class="link-body-emphasis fw-semibold text-decoration-none"
+                            href="{% url 'referencias' %}">Referencia</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        Crear Referencias
+                    </li>
+                </ol>
+            </nav>
+            <div class="row align-items-md-stretch">
+                <div class="col-md-6 w-100">
+                    <div class="p-5 text-bg-dark rounded-3">
+                        <h2 class="title" style="text-align: center;">Referencias</h2><br>
+                        <!--Carrera-->
+                        <form method="post" >
+                            {% csrf_token %}
+                            <div class="select">
+                                <label>Tipo de Referencia *</label>
+                                <select class="form-select" name="tipo_referen" aria-label="Default select example">
+                                    <option selected>Selecione el Tipo de Referencia</option>
+                                    <option value="1">Básica</option>
+                                    <option value="2">Complementaria</option>
+                                    <option value="2">Sitios web</option>
+                                </select><br>
+                                <label>Número *</label>
+                                <input type="number" class="form-control rounded-3" name="numero_referen" id="floatingInput" min="0"
+                                placeholder="Ingrese la cantidad" required><br>
+                                <label>Títtulo de la obra *</label>
+                                <input type="text" class="form-control rounded-3" name="titulo_obra" id="floatingInput" placeholder="Ingrese el Nombre del Título de la obra" required><br>
+                                <label>Existencia en Biblioteca *</label>
+                                <input type="text" class="form-control rounded-3" name="existencia_biblioteca" id="floatingInput"
+                                    placeholder="Definir si es Física o Digital(Si no existe ponga 'No existe en la Biblioteca')" required><br>
+                                <label>Numero de ejemplares*</label>
+                                <input type="number" class="form-control rounded-3" name="numero_ejemplar" id="floatingInput" min="0"
+                                placeholder="Ingrese la cantidad" required><br>
+                                <button class="btn btn-primary" type="submit" name="crear">Guardar</button>
+                            </div>
+                        </form>
+                        {% if msg %}
+                            <div class="alert alert-success" role="alert">
+                                {{ msg }}
+                            </div>
+                        {% endif %}
                     </div>
-                    {% endif %}
                 </div>
             </div>
         </div>
     </div>
 </div>
-{% endblock content %}
+{% endblock body %}
