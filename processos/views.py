@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render
 from .models import Trabajador, Asignatura, Referencias, ProductoAcademico
+from django.db import transaction
 
 # Create your views here.
 def login_view(request):
@@ -40,28 +41,42 @@ def asignatura_view(request):
     return render(request, 'asignatura.html',{'datosAsignatura':
     datosAsignatura, 'msg': msg})
 
+@transaction.atomic
 def trabajador_view(request):
     datosTrabajador = Trabajador.objects.filter(estado='A')
     msg = ""
+    msg1=""
 
-    if request.method == 'POST' and "crear" in request.POST:
-        nombres_trab = request.POST["nombres_trab"]
-        apellidos_trab = request.POST["apellidos_trab"]
-        cedula_trab = request.POST["cedula_trab"]
-        correo_trab = request.POST["correo_trab"]
-        contrasena_trab = request.POST["contrasena_trab"]
-        rol_trab = request.POST["rol_trab"]
+    if request.method == 'POST':
+        if "eliminar" in request.POST:
+            trabajador_id = request.POST["eliminar"]
+            try:
+                trabajador = Trabajador.objects.get(id=trabajador_id)
+                trabajador.estado = "I"
+                trabajador.save()
+                msg = "Trabajador eliminado exitosamente."
+            except Trabajador.DoesNotExist:
+                msg = "El trabajador no existe o ya ha sido eliminado."
 
-        trabajador = Trabajador(
-            nombres=nombres_trab,
-            apellidos=apellidos_trab,
-            cedula_identidad=cedula_trab,
-            correo=correo_trab,
-            contrasena=contrasena_trab,
-            rol=rol_trab
-        )
-        trabajador.save()
-    return render(request, 'Registrar.html', {'datosTrabajador': datosTrabajador, 'msg': msg})
+        if "crear" in request.POST:
+            nombres_trab = request.POST["nombres_trab"]
+            apellidos_trab = request.POST["apellidos_trab"]
+            cedula_trab = request.POST["cedula_trab"]
+            correo_trab = request.POST["correo_trab"]
+            contrasena_trab = request.POST["contrasena_trab"]
+            rol_trab = request.POST["rol_trab"]
+
+            trabajador = Trabajador(
+                nombres=nombres_trab,
+                apellidos=apellidos_trab,
+                cedula_identidad=cedula_trab,
+                correo=correo_trab,
+                contrasena=contrasena_trab,
+                rol=rol_trab
+            )
+            trabajador.save()
+            msg1 = "Trabajador creado exitosamente."
+    return render(request, 'Registrar.html', {'datosTrabajador': datosTrabajador, 'msg': msg, 'msg1':msg1})
 
 def producto_view(request):
     datosProducto = ProductoAcademico.objects.filter(estado='A')
