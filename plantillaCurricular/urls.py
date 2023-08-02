@@ -23,9 +23,11 @@ urlpatterns = [
     path('forgot/', views.forgot_view, name='forgot'),
     path('recover/', views.recover_view, name='recover'),
     path('dashboard/', views.dashboard_view, name='dashboard'),
-    path('asignatura/', views.asignatura_view, name='asignatura'),
+    path('datosinformativos/', views.datosinfo_view, name='datosinfo'),
     path('trabajador', views.trabajador_view, name='trabajador'),
     path('producto/', views.producto_view, name='producto'),
     path('referencias/', views.referencias_view, name='referencias'),
+    path('docente/', views.docente_view, name='docente'),
+    path('unidades/', views.unidades_view, name='unidades'),
     path('admin/', admin.site.urls),
 ]

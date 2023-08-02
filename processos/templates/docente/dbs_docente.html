@@ -7,27 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>{% block title %}Inicio{% endblock %}</title>
     <!-- Favicon-->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-VBmEeJSHFna6Wl8MC+kWE99U1xh9E1+wLZ2Wq0xoeTi1CVnXh7DtLQAhMrAlDx4+0O6Zz8pvQbBG1Cqajhnxg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="icon" href="{% static 'css/logo.png' %}">
     <link href="{% static 'css/style2.css' %}" rel="stylesheet" />
 </head>
 
 <body>
-    
+    {% block body %}
     <div class="d-flex" id="wrapper">
         <!-- Sidebar-->
         <div class="border-end bg-white" id="sidebar-wrapper">
             <div class="sidebar-heading border-bottom bg-light"><b>ISTG</b></div>
             <div class="list-group list-group-flush">
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'trabajador' %}">Crear trabajador</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'datosinfo' %}">Datos Informativos</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'unidades' %}">Unidades</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Planificacion</a>
                 <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Editar Datos</a>
                 <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Presentaciones</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'producto' %}">Productos Acádemicos</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'referencias' %}">Crear Referencias</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'docente' %}">Cambiar a Docente</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Versiones</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Perfil</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Estado</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'dashboard' %}">Cambiar a Administrador</a>
             </div>
         </div>
         <!-- Page content wrapper-->
@@ -38,7 +35,6 @@
                     <button class="btn btn-primary" id="sidebarToggle">
                         <span class="navbar-toggler-icon"></span><!-- Esta clase representa el ícono de menú hamburguesa -->
                     </button>
-                                         
                     <!-- Logo -->
                     <img src="{% static 'img/logo2.png' %}" style="max-width: 40%; height: auto;">
                     <!-- Navbar Collapse Button -->
@@ -51,7 +47,7 @@
                     <!-- Navbar Links -->
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-                            <li class="nav-item active"><a class="nav-link" href="{% url 'dashboard' %}">Inicio</a></li>
+                            <li class="nav-item active"><a class="nav-link" href="{% url 'docente' %}">Inicio</a></li>
                             <li class="nav-item dropdown">
                                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Usuario</a>
@@ -66,23 +62,22 @@
                     </div>
                 </div>
             </nav>
-            {% block content %}
             <div class="container-fluid">
-                <h1 class="mt-4 text-center">Bienvenido</h1>
+                <h1 class="mt-4">Bienvenido al sistema Academico</h1>
                 <div class="row align-items-md-stretch">
                     <div class="col-md-6">
                         <div class="h-100 p-5 text-bg-dark rounded-3">
-                            <h2><b>Datos Informativos</b></h2>
+                            <h2><b>Planificacion</b></h2>
                             <ul>
                                 <li>
-                                    <p>Registro</p>
+                                    <p>Malla Curricular</p>
                                 </li>
                                 <li>
-                                    <p>Actualización</p>
+                                    <p>Microcurrilar</p>
                                 </li>
                             </ul>
                             <button class="btn btn-outline-light" type="button"><a
-                                    href="{% url 'datosinfo' %}">Abrir</a></button>
+                                    href="#">Abrir</a></button>
                         </div>
                     </div>
                 </div>
@@ -92,22 +87,24 @@
                 <div class="row align-items-md-stretch">
                     <div class="col-md-6">
                         <div class="h-100 p-5 text-bg-dark rounded-3">
-                            <h2><b>Trabajadores</b></h2>
+                            <h2><b>Versiones</b></h2>
                             <ul>
                                 <li>
-                                    <p>Creación de usuarios</p>
+                                    <p>Malla Curricular (no editatble)</p>
                                 </li>
                                 <li>
-                                    <p>Actualización de usuarios</p>
+                                    <p>Microcurricular 2022</p>
+                                </li>
+                                <li>
+                                    <p>Microcurrilar 2023</p>
                                 </li>
                             </ul>
                             <button class="btn btn-outline-light" type="button"><a
-                                    href="{% url 'trabajador' %}">Abrir</a></button>
+                                    href="#">Abrir</a></button>
                         </div>
                     </div>
                 </div>
             </div>
-            {% endblock content %}
         </div>
     </div>
 
@@ -117,6 +114,7 @@
     <!-- Core theme JS-->
     {% load static %}
     <script src="{% static 'js/dashboard.js' %}"></script>
+    {% endblock body %}
 </body>
 
 </html>

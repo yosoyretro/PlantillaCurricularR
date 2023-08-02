@@ -25,6 +25,13 @@ window.addEventListener('DOMContentLoaded', event => {
 
 });
 
+function eliminarAlerta(button) {
+    // Accede al elemento padre (la div con clase "alert") y lo elimina
+    var alertContainer = button.parentNode;
+    alertContainer.remove();
+  }
+
+  
   // Obtenemos el botón por su ID
   var addbto = document.getElementById('addbto');
 

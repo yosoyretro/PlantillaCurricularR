@@ -1,0 +1,90 @@
+{% extends "dashboard.html" %}
+{% block content %}
+<div class="d-flex" id="wrapper">
+    <div class="container-fluid">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb p-3 bg-body-tertiary rounded-3">
+                <li class="breadcrumb-item">
+                    <a class="link-body-emphasis" href="{% url 'dashboard' %}">
+                        <i class="material-icons">home</i>
+                        <span class="visually-hidden"></span>
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a class="link-body-emphasis fw-semibold text-decoration-none"
+                        href="{% url 'datosinfo' %}">Datos Informativos</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    Registrar
+                </li>
+            </ol>
+        </nav>
+        <div class="row align-items-md-stretch">
+            <div class="col-md-6 w-100">
+                <div class="p-5 text-bg-dark rounded-3">
+                    <h2 class="title" style="text-align: center;">Datos Informativos</h2><br>
+                    <!--Carrera-->
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="select">
+                            <label>Asignatura *</label>
+                            <input type="text" class="form-control rounded-3" name="nombre_asig" id="floatingInput"
+                                placeholder="Ingrese nombre de la asignatura" required><br>
+                            <label>Periodo *</label>
+                            <select class="form-select" name="periodo_asig" aria-label="Default select example">
+                                <option selected>Selecione el periodo</option>
+                                <option value="Primer">Primer</option>
+                                <option value="Segundo">Segundo</option>
+                                <option value="Tercero">Tercero</option>
+                                <option value="Cuarto">Cuarto</option>
+                                <option value="Quinto">Quinto</option>
+                            </select><br>
+                            <label>Pre-requisito Académico *</label>
+                            <input type="text" class="form-control rounded-3" name="prerequisitos_acade"
+                                id="floatingInput" placeholder="Ingrese el Pre-requisito Académico" required><br>
+                            <label>APORTES TEÓRICOS, METODOLÓGICOS DE LA ASIGNATURA A LOS PROBLEMAS DE LA PROFESIÓN *</label>
+                            <textarea class="form-control rounded-3" name="objetivo" id="floatingInput"
+                                placeholder="Ingrese objetivo de la asignatura" required rows="5">
+• Identifica cada una de las funciones administrativas. 
+• Aplica técnicas inferenciales e interpreta resultados de problemas planteados.
+• Comparte recursos entre los equipos integrantes de una red.
+• Aplica técnicas en seguridades de base de datos.
+                            </textarea><br>
+                            <label>OBJETIVOS DE LA ASIGNATURA*</label>
+                            <textarea class="form-control rounded-3" name="objetivo" id="floatingInput"
+                                placeholder="Ingrese objetivo de la asignatura" required
+                                rows="3">Desarrollar e implementar una guía de estudio para el estudiante de la carrera de desarrollo de software, que permita adquirir conocimientos y destrezas para la materia de programación visual, empleando tecnología python y mediante framework DJANGO.</textarea><br>
+                            <label>Objetivos Específicos *</label>
+                            <textarea class="form-control rounded-3" name="objetivo" id="floatingInput"
+                                placeholder="Ingrese objetivo de la asignatura" required rows="8">
+• Comprender mediante los conceptos básicos del desarrollo de aplicaciones en ambiente visual las etiquetas empleadas en HTML5, así como aprender a elaborar formularios empleando la estructura HTML5 y django.
+• Diseñar e implementar acertadamente el manejo de la administracion de DJANGO , Interfaz de Usuario, Modelo y URLS. 
+Mediante el Modelo Vista Template de Django.
+• Utilizar las sentencias CRUD desde ORM DJANGO.
+• Comprender e implementar un reporte básico con ReportLab.
+                            </textarea><br>
+                            <label>APORTES AL PERFIL DE EGRESO DE LA CARRERA*</label>
+                            <textarea class="form-control rounded-3" name="objetivo" id="floatingInput"
+                                placeholder="Ingrese objetivo de la asignatura" required rows="5">
+• Identifica cada una de las funciones administrativas.
+• Aplica técnicas inferenciales e interpreta resultados de problemas planteados.
+• Comparte recursos entre los equipos integrantes de una red.
+• Aplica técnicas en seguridades de base de datos.
+                            </textarea><br>
+                            <label>Producto Académico *</label>
+                            <input type="text" class="form-control rounded-3" name="producto_academ" id="floatingInput"
+                                placeholder="Ingrese la descripción del Producto Académico" required><br>
+                            <button class="btn btn-primary" type="submit" name="crear">Guardar</button>
+                        </div>
+                    </form>
+                    {% if msg %}
+                    <div class="alert alert-success" role="alert">
+                        {{ msg }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

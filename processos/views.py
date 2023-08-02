@@ -15,18 +15,19 @@ def recover_view(request):
 def dashboard_view(request):
     return render(request, 'dashboard.html',{})
 
-def asignatura_view(request):
+def datosinfo_view(request):
     datosAsignatura = Asignatura.objects.filter(estado='A')
     msg = ""
 
     if request.method == 'POST' and "crear" in request.POST:
         asignatura = request.POST["nombre_asig"]
-        objetivo = request.POST["objetivo_asig"]
+        periodo_a = request.POST["periodo_asig"]
+        prerequisitos = request.POST["prerequisitos_acade"]
         aportes = request.POST["aportes_teori"]
+        objetivo = request.POST["objetivo_asig"]
         objetivos_es = request.POST["objetivos_especi"]
         producto_ac = request.POST["producto_academ"]
-        prerequisitos = request.POST["prerequisitos_acade"]
-        periodo_a = request.POST["periodo_asig"]
+        
 
         asignatura = Asignatura(
             nombre_asignatura=asignatura,
@@ -38,7 +39,7 @@ def asignatura_view(request):
             periodo=periodo_a
         )
         asignatura.save() 
-    return render(request, 'asignatura.html',{'datosAsignatura':
+    return render(request, 'datosinfo.html',{'datosAsignatura':
     datosAsignatura, 'msg': msg})
 
 @transaction.atomic
@@ -120,3 +121,9 @@ def referencias_view(request):
         referencias.save()
     return render(request, 'referencias.html',{'datosReferencias':
     datosReferencias, 'msg': msg})
+
+def docente_view(request):
+    return render(request, 'docente/dbs_docente.html',{})
+
+def unidades_view(request):
+    return render(request, 'unidades.html',{})
