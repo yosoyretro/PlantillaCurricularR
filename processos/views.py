@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from .models import Trabajador, Asignatura, Referencias, ProductoAcademico
+from .models import Trabajador, Asignatura, Referencias, ProductoAcademico, Unidades
 from django.db import transaction
 
 # Create your views here.
@@ -18,29 +18,45 @@ def dashboard_view(request):
 def datosinfo_view(request):
     datosAsignatura = Asignatura.objects.filter(estado='A')
     msg = ""
+    msg1 = ""
 
-    if request.method == 'POST' and "crear" in request.POST:
-        asignatura = request.POST["nombre_asig"]
-        periodo_a = request.POST["periodo_asig"]
-        prerequisitos = request.POST["prerequisitos_acade"]
-        aportes = request.POST["aportes_teori"]
-        objetivo = request.POST["objetivo_asig"]
-        objetivos_es = request.POST["objetivos_especi"]
-        producto_ac = request.POST["producto_academ"]
-        
+    
+    if request.method == 'POST':
+        if "eliminar" in request.POST:
+            asignatura_id = request.POST["eliminar"]
+            try:
+                asignatura = Asignatura.objects.get(id=asignatura_id)
+                asignatura.estado = "I"
+                asignatura.save()
+                msg = "Trabajador eliminado exitosamente."
+            except Asignatura.DoesNotExist:
+                msg = "Registro eliminado exitosamente."
 
-        asignatura = Asignatura(
-            nombre_asignatura=asignatura,
-            objetivo_asignatura=objetivo,
-            aportes_teoricos=aportes,
-            objetivos_especificos=objetivos_es,
-            producto_academico=producto_ac,
-            prerequisito_academico=prerequisitos,
-            periodo=periodo_a
-        )
-        asignatura.save() 
+        if "crear" in request.POST:
+            asignatura = request.POST["nombre_asig"]
+            periodo_a = request.POST["periodo_asig"]
+            prerequisitos = request.POST["prerequisitos_acade"]
+            aportes = request.POST["aportes_teori"]
+            objetivo = request.POST["objetivo_asig"]
+            objetivos_es = request.POST["objetivos_especi"]
+            aportes_egreso = request.POST["aportes_perfil"]
+            producto_ac = request.POST["producto_academ"]
+            
+
+            asignatura = Asignatura(
+                nombre_asignatura=asignatura,
+                objetivo_asignatura=objetivo,
+                aportes_teoricos=aportes,
+                objetivos_especificos=objetivos_es,
+                producto_academico=producto_ac,
+                prerequisito_academico=prerequisitos,
+                periodo=periodo_a,
+                aportes_perfil_egreso=aportes_egreso
+            )
+            asignatura.save()
+            msg1 = "Registro exitoso."
     return render(request, 'datosinfo.html',{'datosAsignatura':
-    datosAsignatura, 'msg': msg})
+    datosAsignatura, 'msg': msg,  'msg1':msg1})
 
 @transaction.atomic
 def trabajador_view(request):
@@ -126,4 +142,36 @@ def docente_view(request):
     return render(request, 'docente/dbs_docente.html',{})
 
 def unidades_view(request):
+    datosUnidades = Unidades.objects.filter(estado='A')
+    msg = ""
+    msg1 = ""
+
+    
+    if request.method == 'POST':
+        if "eliminar" in request.POST:
+            unidades_id = request.POST["eliminar"]
+            try:
+                unidades = Unidades.objects.get(id=unidades_id)
+                unidades.estado = "I"
+                unidades.save()
+                msg = "Unidad eliminada exitosamente."
+            except Unidades.DoesNotExist:
+                msg = "Registro eliminado exitosamente."
+
+        if "crear" in request.POST:
+            unidad = request.POST["nombre_uni"]
+            objetivo_u = request.POST["objetivo_uni"]
+            numero_u = request.POST[""]
+            horas_do = request.POST["horas_doce"]
+            horas_pra = request.POST["horas_pract"]          
+
+            unidades = Asignatura(
+                nombre_unidad=unidad,
+                objetivo_unidad=objetivo_u,
+                numero_unidad=numero_u,
+                horas_docencia=horas_do,
+                horas_practica=horas_pra,
+            )
+            unidades.save()
+            msg1 = "Registro exitoso."
     return render(request, 'unidades.html',{})

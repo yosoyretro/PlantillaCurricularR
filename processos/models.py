@@ -21,6 +21,7 @@ class Asignatura(models.Model):
     producto_academico = models.CharField(max_length=1500)
     prerequisito_academico = models.CharField(max_length=400)
     periodo = models.CharField(max_length=150)
+    aportes_perfil_egreso = models.CharField(max_length=600)
     estado = models.CharField(max_length=3, default='A')
 
 class Referencias(models.Model):
@@ -42,7 +43,7 @@ class ProductoAcademico(models.Model):
     estado = models.CharField(max_length=3, default='A')
 
 
-class unidades(models.Model):
+class Unidades(models.Model):
     id = models.IntegerField(primary_key=True)
     nombre_unidad = models.CharField(max_length=200)
     objetivo_unidad = models.CharField(max_length=650)

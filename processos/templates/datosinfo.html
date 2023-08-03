@@ -21,6 +21,59 @@
         </nav>
         <div class="row align-items-md-stretch">
             <div class="col-md-6 w-100">
+                <div class="p-5 text-bg-dark rounded-3 text-center">
+                    <h1>Usuarios Creados</h1>
+                    <table class="table accordion">
+                        <thead>
+                            <tr>
+                                <th> Asignatura </th>
+                                <th> Periodo </th>
+                                <th> Pre-requisito Académico </th>
+                                <th> APORTES TEÓRICOS, METODOLÓGICOS DE LA ASIGNATURA A LOS PROBLEMAS DE LA PROFESIÓN </th>
+                                <th> OBJETIVOS DE LA ASIGNATURA </th>
+                                <th> Objetivos Específicos </th>
+                                <th> APORTES AL PERFIL DE EGRESO DE LA CARRERA </th>
+                                <th> Producto Académico </th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for asignatura in datosAsignatura %}
+                            <tr>
+                                <td>{{ asignatura.nombre_asignatura }}</td>
+                                <td>{{ asignatura.periodo }}</td>
+                                <td>{{ asignatura.prerequisito_academico }}</td>
+                                <td>{{ asignatura.aportes_teoricos }}</td>
+                                <td>{{ asignatura.objetivo_asignatura }}</td>
+                                <td>{{ asignatura.objetivos_especificos }}</td>
+                                <td>{{ asignatura.aportes_perfil_egreso }}</td>
+                                <td>{{ asignatura.producto_academico }}</td>
+                                <td>
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="eliminar" value="{{ asignatura.id }}">
+                                        <button class="btn btn" type="submit">
+                                            <i>
+                                                <span class="material-icons">delete</span>
+                                            </i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% if msg %}
+                    <div class="alert alert-success" role="alert">
+                        {{ msg }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row align-items-md-stretch">
+            <div class="col-md-6 w-100">
                 <div class="p-5 text-bg-dark rounded-3">
                     <h2 class="title" style="text-align: center;">Datos Informativos</h2><br>
                     <!--Carrera-->
@@ -43,7 +96,7 @@
                             <input type="text" class="form-control rounded-3" name="prerequisitos_acade"
                                 id="floatingInput" placeholder="Ingrese el Pre-requisito Académico" required><br>
                             <label>APORTES TEÓRICOS, METODOLÓGICOS DE LA ASIGNATURA A LOS PROBLEMAS DE LA PROFESIÓN *</label>
-                            <textarea class="form-control rounded-3" name="objetivo" id="floatingInput"
+                            <textarea class="form-control rounded-3" name="aportes_teori" id="floatingInput"
                                 placeholder="Ingrese objetivo de la asignatura" required rows="5">
 • Identifica cada una de las funciones administrativas. 
 • Aplica técnicas inferenciales e interpreta resultados de problemas planteados.
@@ -51,11 +104,11 @@
 • Aplica técnicas en seguridades de base de datos.
                             </textarea><br>
                             <label>OBJETIVOS DE LA ASIGNATURA*</label>
-                            <textarea class="form-control rounded-3" name="objetivo" id="floatingInput"
+                            <textarea class="form-control rounded-3" name="objetivo_asig" id="floatingInput"
                                 placeholder="Ingrese objetivo de la asignatura" required
                                 rows="3">Desarrollar e implementar una guía de estudio para el estudiante de la carrera de desarrollo de software, que permita adquirir conocimientos y destrezas para la materia de programación visual, empleando tecnología python y mediante framework DJANGO.</textarea><br>
                             <label>Objetivos Específicos *</label>
-                            <textarea class="form-control rounded-3" name="objetivo" id="floatingInput"
+                            <textarea class="form-control rounded-3" name="objetivos_especi" id="floatingInput"
                                 placeholder="Ingrese objetivo de la asignatura" required rows="8">
 • Comprender mediante los conceptos básicos del desarrollo de aplicaciones en ambiente visual las etiquetas empleadas en HTML5, así como aprender a elaborar formularios empleando la estructura HTML5 y django.
 • Diseñar e implementar acertadamente el manejo de la administracion de DJANGO , Interfaz de Usuario, Modelo y URLS. 
@@ -64,7 +117,7 @@ Mediante el Modelo Vista Template de Django.
 • Comprender e implementar un reporte básico con ReportLab.
                             </textarea><br>
                             <label>APORTES AL PERFIL DE EGRESO DE LA CARRERA*</label>
-                            <textarea class="form-control rounded-3" name="objetivo" id="floatingInput"
+                            <textarea class="form-control rounded-3" name="aportes_perfil" id="floatingInput"
                                 placeholder="Ingrese objetivo de la asignatura" required rows="5">
 • Identifica cada una de las funciones administrativas.
 • Aplica técnicas inferenciales e interpreta resultados de problemas planteados.
@@ -77,9 +130,9 @@ Mediante el Modelo Vista Template de Django.
                             <button class="btn btn-primary" type="submit" name="crear">Guardar</button>
                         </div>
                     </form>
-                    {% if msg %}
+                    {% if msg1 %}
                     <div class="alert alert-success" role="alert">
-                        {{ msg }}
+                        {{ msg1 }}
                     </div>
                     {% endif %}
                 </div>
