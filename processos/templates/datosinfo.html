@@ -11,8 +11,8 @@
                     </a>
                 </li>
                 <li class="breadcrumb-item">
-                    <a class="link-body-emphasis fw-semibold text-decoration-none"
-                        href="{% url 'datosinfo' %}">Datos Informativos</a>
+                    <a class="link-body-emphasis fw-semibold text-decoration-none" href="{% url 'datosinfo' %}">Datos
+                        Informativos</a>
                 </li>
                 <li class="breadcrumb-item active" aria-current="page">
                     Registrar
@@ -22,14 +22,15 @@
         <div class="row align-items-md-stretch">
             <div class="col-md-6 w-100">
                 <div class="p-5 text-bg-dark rounded-3 text-center">
-                    <h1>Usuarios Creados</h1>
+                    <h1>Materias creadas</h1>
                     <table class="table accordion">
                         <thead>
                             <tr>
                                 <th> Asignatura </th>
                                 <th> Periodo </th>
                                 <th> Pre-requisito Académico </th>
-                                <th> APORTES TEÓRICOS, METODOLÓGICOS DE LA ASIGNATURA A LOS PROBLEMAS DE LA PROFESIÓN </th>
+                                <th> APORTES TEÓRICOS, METODOLÓGICOS DE LA ASIGNATURA A LOS PROBLEMAS DE LA PROFESIÓN
+                                </th>
                                 <th> OBJETIVOS DE LA ASIGNATURA </th>
                                 <th> Objetivos Específicos </th>
                                 <th> APORTES AL PERFIL DE EGRESO DE LA CARRERA </th>
@@ -95,7 +96,8 @@
                             <label>Pre-requisito Académico *</label>
                             <input type="text" class="form-control rounded-3" name="prerequisitos_acade"
                                 id="floatingInput" placeholder="Ingrese el Pre-requisito Académico" required><br>
-                            <label>APORTES TEÓRICOS, METODOLÓGICOS DE LA ASIGNATURA A LOS PROBLEMAS DE LA PROFESIÓN *</label>
+                            <label>APORTES TEÓRICOS, METODOLÓGICOS DE LA ASIGNATURA A LOS PROBLEMAS DE LA PROFESIÓN
+                                *</label>
                             <textarea class="form-control rounded-3" name="aportes_teori" id="floatingInput"
                                 placeholder="Ingrese objetivo de la asignatura" required rows="5">
 • Identifica cada una de las funciones administrativas. 
@@ -138,6 +140,162 @@ Mediante el Modelo Vista Template de Django.
                 </div>
             </div>
         </div>
+        <hr>
+        <div class="row align-items-md-stretch">
+            <div class="d-flex" id="wrapper">
+                <div class="container-fluid">
+                    <div class="row align-items-md-stretch">
+                        <div class="col-md-6 w-100">
+                            <div class="p-5 text-bg-dark rounded-3">
+                                <h2 class="title" style="text-align: center;">Unidades</h2><br>
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <div class="select">
+                                        <label>Titulo*</label>
+                                        <input type="text" class="form-control rounded-3" name="nombre_uni"
+                                            id="floatingInput" placeholder="Unidad #: Introduccion a la unidad"
+                                            required><br>
+                                        <label>OBJETIVO *</label>
+                                        <textarea class="form-control rounded-3" name="objetivo_uni" id="floatingInput"
+                                            placeholder="Ingrese objetivo de la asignatura" required rows="4">
+            Comprender mediante los conceptos básicos del desarrollo de aplicaciones en ambiente visual las etiquetas empleadas en HTML5, así como aprender a elaborar
+            formularios empleando la estructura HTML5 y django
+                                        </textarea><br>
+                                        <table>
+                                            <tr>
+                                                <td>
+                                                    <label>Horas de trabajo presencial *</label>
+                                                    <input type="number" class="form-control rounded-3"
+                                                        name="horas_doce" id="floatingInput"
+                                                        placeholder="Ingrese Horario" required><br>
+                                                </td>
+                                                <td>
+                                                    <label>Horas de trabajo independiente *</label>
+                                                    <input type="number" class="form-control rounded-3"
+                                                        name="horas_pract" id="floatingInput"
+                                                        placeholder="Ingrese Horario" required><br>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </form>
+                                {% if msg %}
+                                <div class="alert alert-success" role="alert">
+                                    {{ msg }}
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row align-items-md-stretch">
+            <div class="d-flex" id="wrapper">
+                <div class="container-fluid">
+                    <div class="row align-items-md-stretch">
+                        <div class="col-md-6 w-100">
+                            <div class="p-5 text-bg-dark rounded-3">
+                                <h2 class="title" style="text-align: center;">Productos Acádemicos</h2><br>
+                                <!--Carrera-->
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <div class="select">
+                                        <label>PRODUCTO ACADÉMICO FINAL DE LA ASIGNATURA *</label>
+                                        <input type="text" class="form-control rounded-3" name="producto_final"
+                                            id="floatingInput" placeholder="Ingrese nombre de la asignatura" required>
+                                        <br>
+                                        <label>Objetivo *</label>
+                                        <input type="text" class="form-control rounded-3" name="objetivo"
+                                            id="floatingInput" placeholder="Ingrese objetivo de la asignatura"
+                                            required><br>
+                                        <label>Productos Parciales *</label>
+                                        <input type="text" class="form-control rounded-3" name="producto_parci"
+                                            id="floatingInput" placeholder="Ingrese los aportes teoricos" required><br>
+                                        <label>Resultados y Estándares de Presentación *</label>
+                                        <input type="text" class="form-control rounded-3" name="resultados_presen"
+                                            id="floatingInput" placeholder="Ingrese los objetivos específicos"
+                                            required><br>
+                                        <label>Integración con otras asignaturas *</label>
+                                        <input type="text" class="form-control rounded-3" name="integracion_asigna"
+                                            id="floatingInput"
+                                            placeholder="Ingrese la descripción del Producto Académico" required><br>
+                                        <button class="btn btn-primary" type="submit" name="crear">Guardar</button>
+                                    </div>
+                                </form>
+                                {% if msg %}
+                                <div class="alert alert-success" role="alert">
+                                    {{ msg }}
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row align-items-md-stretch">
+                        <div class="col-md-6 w-100">
+                            <div class="p-5 text-bg-dark rounded-3">
+                                <ul>
+                                    {% for producto in datosProducto %}
+                                    <li>{{ producto.producto_final }} - {{ trabajador.objetivo }} - {{
+                                        trabajador.producto_parcial
+                                        }} {{ producto.presentacion }} - {{producto.integracion}}</li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row align-items-md-stretch">
+            <div class="d-flex" id="wrapper">
+                <div class="container-fluid">
+                    <div class="row align-items-md-stretch">
+                        <div class="col-md-6 w-100">
+                            <div class="p-5 text-bg-dark rounded-3">
+                                <h2 class="title" style="text-align: center;">Referencias</h2><br>
+                                <!--Carrera-->
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <div class="select">
+                                        <label>Tipo de Referencia *</label>
+                                        <select class="form-select" name="tipo_referen" aria-label="Default select example">
+                                            <option selected>Selecione el Tipo de Referencia</option>
+                                            <option value="1">Básica</option>
+                                            <option value="2">Complementaria</option>
+                                            <option value="2">Sitios web</option>
+                                        </select><br>
+                                        <label>Número *</label>
+                                        <input type="number" class="form-control rounded-3" name="numero_referen" id="floatingInput"
+                                            min="0" placeholder="Ingrese la cantidad" required><br>
+                                        <label>Títtulo de la obra *</label>
+                                        <input type="text" class="form-control rounded-3" name="titulo_obra" id="floatingInput"
+                                            placeholder="Ingrese el Nombre del Título de la obra" required><br>
+                                        <label>Existencia en Biblioteca *</label>
+                                        <input type="text" class="form-control rounded-3" name="existencia_biblioteca"
+                                            id="floatingInput"
+                                            placeholder="Definir si es Física o Digital(Si no existe ponga 'No existe en la Biblioteca')"
+                                            required><br>
+                                        <label>Numero de ejemplares*</label>
+                                        <input type="number" class="form-control rounded-3" name="numero_ejemplar"
+                                            id="floatingInput" min="0" placeholder="Ingrese la cantidad" required><br>
+                                        <button class="btn btn-primary" type="submit" name="crear">Guardar</button>
+                                    </div>
+                                </form>
+                                {% if msg %}
+                                <div class="alert alert-success" role="alert">
+                                    {{ msg }}
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
     </div>
 </div>
 {% endblock content %}
