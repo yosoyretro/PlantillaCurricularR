@@ -2985,7 +2985,9 @@ fieldset:disabled .btn {
   --bs-btn-disabled-bg: #0d6efd;
   --bs-btn-disabled-border-color: #0d6efd;
 }
-
+.a_hover {
+  color: #fff
+}
 .btn-secondary {
   --bs-btn-color: #fff;
   --bs-btn-bg: #6c757d;

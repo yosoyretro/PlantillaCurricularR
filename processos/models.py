@@ -70,3 +70,9 @@ class responsables(models.Model):
     cargo_responsable = models.CharField(max_length=200)
     firma_responsable = models.CharField(max_length=200)
     estado = models.CharField(max_length=3, default='A')
+
+# class Controlador(models.Model):
+#     id_asignatura = models.ForeignKey()
+#     id_productoAcademico = models.ForeignKey()
+#     id_contenido = models.ForeignKey()
+    

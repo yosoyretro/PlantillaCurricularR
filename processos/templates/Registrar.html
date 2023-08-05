@@ -19,12 +19,18 @@
                 </li>
             </ol>
         </nav>
+        
+        <div class="p-2">
+            <button class="boton-guayaquil" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Crear</button>
+        </div>
         <div class="row align-items-md-stretch">
             <div class="col-md-6 w-100">
+                <div class="m-4 text-center">
+                    <h1 class="texto-azul-oscuro">Usuarios Creados</h1>
+                </div>
                 <div class="p-5 text-bg-dark rounded-3 text-center">
-                    <h1>Usuarios Creados</h1>
-                    <table class="table accordion">
-                        <thead>
+                    <table class="table accordion table-bordered rounded">
+                        <thead class="text-white bg-danger">
                             <tr>
                                 <th> Nombres </th>
                                 <th> Apellidos </th>
@@ -69,48 +75,45 @@
         </div>
         <hr>
 
-        <div class="row align-items-md-stretch">
-            <div class="col-md-6 w-100">
-                <div class="p-5 text-bg-dark rounded-3">
-                    <h2 class="title" style="text-align: center;">Trabajador</h2><br>
-                    <!--Carrera-->
-                    <form method="post">
-                        {% csrf_token %}
-                        <div class="select">
-                            <label>Nombres *</label>
-                            <input type="text" class="form-control rounded-3" name="nombres_trab" id="floatingInput"
-                                placeholder="Ingrese los Nombres" required>
-                            <br>
-                            <label>Apellidos *</label>
-                            <input type="text" class="form-control rounded-3" name="apellidos_trab" id="floatingInput"
-                                placeholder="Ingrese los Apellidos" required><br>
-                            <label>Cédula de identidad *</label>
-                            <input type="text" class="form-control rounded-3" name="cedula_trab" id="floatingInput"
-                                placeholder="Ingrese la Cédula" required><br>
-                            <label>Correo *</label>
-                            <input type="text" class="form-control rounded-3" name="correo_trab" id="floatingInput"
-                                placeholder="Ingrese el Correo" required><br>
-                            <label>Contraseña *</label>
-                            <input type="text" class="form-control rounded-3" name="contrasena_trab" id="floatingInput"
-                                placeholder="Ingrese la Contraseña" required><br>
-                            <label>Rol del Trabajador *</label>
-                            <select class="form-select" name="rol_trab" aria-label="Default select example">
-                                <option selected>Selecione el Rol</option>
-                                <option value="Profesor">Profesor</option>
-                                <option value="Admin">Admin</option>
-                            </select><br>
-                            <button class="btn btn-primary" name="crear" type="submit">Guardar</button>
-                    </form>
-                    {% if msg1 %}
-                    <div class="alert alert-success" role="alert">
-                        <span></span>
-                        <button class="close-button" onclick="eliminarAlerta(this)">x</button>
+        <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <form method="post">
+                            {% csrf_token %}
+                            <div >
+                                <div class="form-control p-3">
+                                    
+                                    <label>Nombres<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control rounded-3" name="nombres_trab" id="floatingInput"
+                                        placeholder="Ingrese los Nombres" required>
+                                
+                                    <label>Apellidos <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control rounded-3" name="apellidos_trab" id="floatingInput"
+                                        placeholder="Ingrese los Apellidos" required><br>
+                                    <label>Cédula de identidad <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control rounded-3" name="cedula_trab" id="floatingInput"
+                                        placeholder="Ingrese la Cédula" required><br>
+                                    <label>Correo <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control rounded-3" name="correo_trab" id="floatingInput"
+                                        placeholder="Ingrese el Correo" required><br>
+                                    <label>Contraseña <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control rounded-3" name="contrasena_trab" id="floatingInput"
+                                        placeholder="Ingrese la Contraseña" required><br>
+                                    <label>Rol del Trabajador <span class="text-danger">*</span></label>
+                                    <select class="form-select" name="rol_trab" aria-label="Default select example">
+                                        <option selected>Selecione el Rol</option>
+                                        <option value="Profesor">Profesor</option>
+                                        <option value="Admin">Admin</option>
+                                    </select><br>
+                                    <button class="boton-guayaquil w-100" name="crear" type="submit">Guardar</button>
+                            </div>
+                        </form>
                     </div>
-                    {{ msg1 }}
                 </div>
-                {% endif %}
             </div>
         </div>
+    </div>
     </div>
 </div>
 </div>

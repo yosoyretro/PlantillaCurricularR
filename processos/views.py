@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from .models import Trabajador, Asignatura, Referencias, ProductoAcademico, Unidades
+from .models import Trabajador, Asignatura, Referencias, ProductoAcademico, Unidades, Contenido
 from django.db import transaction
 
 # Create your views here.
@@ -9,24 +9,25 @@ def login_view(request):
     if request.method == "POST":
         usuarioInput = request.POST["username"]
         claveInput = request.POST["password"]
-        rolInput = request.POST.get("rol")  # Assuming the name of the select element is "rol"
-
+        rolInput = request.POST.get("rol") 
         try:
-            objTrabajador = Trabajador.objects.get(correo=usuarioInput, estado='A', rol=rolInput)
-
-            if objTrabajador.contrasena == claveInput:
-                request.session['usuario'] = f"{objTrabajador.correo} {objTrabajador.contrasena}"
-                return redirect('dashboard')
-            else:
-                ok = False
-                msg = "Credenciales Inválidas"
-        except Trabajador.DoesNotExist:
+            objtrabajado = Trabajador.objects.get(correo=usuarioInput) 
+            print(objtrabajado)
+            if objtrabajado:
+                if(objtrabajado.rol == rolInput and objtrabajado.contrasena == claveInput):
+                    if rolInput == "Admin":
+                        return redirect('dashboard')
+                    elif rolInput == "Profesor":
+                        return redirect('docente:docente')
+                else:
+                    msg = "Credenciales invalidas"
+                    ok = False
+                    print("error credenciales")
+        except:
+            print("error ren la base de datos")
             ok = False
             msg = "Este usuario no está registrado en nuestra base de datos"
-        except Trabajador.MultipleObjectsReturned:
-            ok = False
-            msg = "Error: Hay múltiples usuarios con la misma información de inicio de sesión. Comuníquese con el administrador del sistema."
-
+        
     return render(request, 'login.html', {
         'ok': ok,
         'msg': msg
@@ -165,9 +166,6 @@ def referencias_view(request):
     return render(request, 'referencias.html',{'datosReferencias':
     datosReferencias, 'msg': msg})
 
-def docente_view(request):
-    return render(request, 'docente/dbs_docente.html',{})
-
 def unidades_view(request):
     datosUnidades = Unidades.objects.filter(estado='A')
     msg = ""
@@ -208,3 +206,25 @@ def perfil_view(request):
 
 def configuracion_view(request):
     return render(request, 'configuracion.html',{})
+
+def controlador_view(request):
+    objet_Asignatura = Asignatura.objects.filter(estado="A")
+    if request.method == "POST":
+        asignatura_id = int(request.POST["asignatura"])
+        return redirect('controlador_view', id=asignatura_id)
+    
+    return render(request, 'controlador.html', {'asignaturas': objet_Asignatura})
+
+def mallaCurricular_view(request, id):
+    #return redirect('controlador_view')
+    
+    asignatura = Asignatura.objects.get(id=id, estado='A')
+    objet_unidades = Unidades.objects.filter(id_asignatura=asignatura, estado='A')
+    
+    dcon = {}
+    for unidades in objet_unidades:
+        contenidos = Contenido.objects.filter(id_unidad=unidades, estado='A')
+        dcon[unidades] = contenidos
+
+    return render(request, 'controlador.html', {})
+    

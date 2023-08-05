@@ -17,7 +17,7 @@
         <div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog"
             id="modalSignin">
             <div class="modal-dialog" role="document">
-                <div class="modal-content rounded-4 shadow">
+                <div class="modal-content shadow">
                     <div class="modal-header p-5 pb-4 justify-content-center">
                         <div style="text-align: center;">
                             <a href="https://istg.edu.ec/">
@@ -28,6 +28,11 @@
                     <div class="modal-body p-5">
                         <form method="post" action="{% url 'login' %}">
                             {% csrf_token %}
+                            {% if ok == False %}
+                                <div class="alert alert-danger" role="alert">
+                                    <strong>Error:</strong> {{ msg }}
+                                </div>
+                            {% endif %}
                             <div class="form-floating mb-3">
                                 <input type="text" name="username" class="form-control rounded-3" id="floatingInput" required placeholder="name@example.com">
                                 <label for="floatingInput">Correo institucional</label>
@@ -48,8 +53,8 @@
                             {% endif %}
                             <select name="rol" class="w-100 mb-2 btn btn-light rounded-3 btn-primary">
                                 <option value="1">Selecciona tu rol</option>
-                                <option value="2">Administrador</option>
-                                <option value="3">Docente</option>
+                                <option value="Admin">Administrador</option>
+                                <option value="Profesor">Docente</option>
                             </select>
                             <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">Iniciar</button>
                             <hr class="my-4">
