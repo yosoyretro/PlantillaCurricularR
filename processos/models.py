@@ -2,15 +2,17 @@ from django.db import models
 
 # Create your models here.
 
+
 class Trabajador(models.Model):
     id = models.IntegerField(primary_key=True)
     nombres = models.CharField(max_length=200)
     apellidos = models.CharField(max_length=200)
-    cedula_identidad= models.IntegerField(unique=True)
+    cedula_identidad = models.IntegerField(unique=True)
     correo = models.EmailField(max_length=300)
     contrasena = models.CharField(max_length=150)
     rol = models.CharField(max_length=60)
     estado = models.CharField(max_length=3, default='A')
+
 
 class Asignatura(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -24,6 +26,7 @@ class Asignatura(models.Model):
     aportes_perfil_egreso = models.CharField(max_length=600)
     estado = models.CharField(max_length=3, default='A')
 
+
 class Referencias(models.Model):
     id = models.IntegerField(primary_key=True)
     tipo_referencia = models.CharField(max_length=100)
@@ -32,6 +35,7 @@ class Referencias(models.Model):
     existencia_biblioteca = models.CharField(max_length=450)
     numero_ejemplares = models.IntegerField()
     estado = models.CharField(max_length=3, default='A')
+
 
 class ProductoAcademico(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -52,17 +56,20 @@ class Unidades(models.Model):
     horas_practica = models.IntegerField()
     estado = models.CharField(max_length=3, default='A')
 
+
 class Contenido(models.Model):
     id = models.IntegerField(primary_key=True)
     nombre_contenido = models.CharField(max_length=200)
     numero_contenido = models.IntegerField()
     estado = models.CharField(max_length=3, default='A')
 
+
 class versiontest(models.Model):
     id = models.IntegerField(primary_key=True)
     nombre_version = models.CharField(max_length=200)
     fecha_creacion = models.DateField()
     estado = models.CharField(max_length=3, default='A')
+
 
 class responsables(models.Model):
     id = models.IntegerField(primary_key=True)
@@ -71,8 +78,10 @@ class responsables(models.Model):
     firma_responsable = models.CharField(max_length=200)
     estado = models.CharField(max_length=3, default='A')
 
-# class Controlador(models.Model):
-#     id_asignatura = models.ForeignKey()
-#     id_productoAcademico = models.ForeignKey()
-#     id_contenido = models.ForeignKey()
-    
+
+class Controlador(models.Model):
+    id_asignatura = models.ForeignKey()
+    id_productoAcademico = models.ForeignKey()
+    id_unidades = models.ForeignKey()
+    id_contenido = models.ForeignKey()
+    id_responsable = models.ForeignKey()
