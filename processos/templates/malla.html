@@ -19,9 +19,10 @@
                                 <label for="asignatura">Seleccione una asignatura:</label>
                                 <select class="form-select" name="asignatura" id="asignatura"
                                     ria-label="Default select example">
-                                    <option selected>Selecione el periodo</option>
-                                    {% for unidades in unidades %}
-                                    <option value="{{ unidades.id }}">{{ asignatura.nombre_unidad }}</option>
+                                    <option selected>Selecione una opcion</option>
+                                    {% for controlador in controladores %}
+                                    <option value="{{ controlador.id }}">{{ controlador.asignatura.nombre }} - {{
+                                        controlador.unidad.nombre }}</option>
                                     {% endfor %}
                                 </select><br>
                             </div>
@@ -35,5 +36,4 @@
         </div>
     </div>
 </div>
-
 {% endblock content %}

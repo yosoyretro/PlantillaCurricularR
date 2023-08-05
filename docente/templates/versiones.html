@@ -20,34 +20,65 @@
       </ol>
     </nav>
     <div class="row align-items-md-stretch">
-        <div class="d-flex" id="wrapper">
-            <div class="container-fluid">
-                <div class="row align-items-md-stretch">
-                    <div class="col-md-6 w-100">
-                        <div class="p-5 text-bg-dark rounded-3">
-                            <h2 class="title" style="text-align: center;">Historial de versiones</h2><br>
-                            <form method="post">
-                                {% csrf_token %}
-                                <label for="asignatura">Seleccione version de una asignatura:</label>
-                                <select class="form-select" name="asignatura" id="asignatura" ria-label="Default select example">
-                                    <option selected>Selecione el periodo</option>
-                                        {% for asignatura in asignaturas %}
-                                        <option value="{{ asignatura.id }}">{{ asignatura.nombre_asignatura }}</option>
-                                        {% endfor %}
-                                </select><br>
-                                <button class="btn btn-primary" type="submit">Seleccionar</button>
-                            </form>
-                            {% if msg %}
-                            <div class="alert alert-success" role="alert">
-                                {{ msg }}
-                            </div>
-                            {% endif %}
-                        </div>
-                    </div>
-                </div>
+      <div class="d-flex" id="wrapper">
+        <div class="container-fluid">
+          <div class="row align-items-md-stretch">
+            <div class="col-md-6 w-100">
+              <div class="p-5 text-bg-dark rounded-3">
+                <h2 class="title" style="text-align: center">
+                  Historial de versiones
+                </h2>
+                <br />
+                <form method="post">
+                  {% csrf_token %}
+                  <label for="asignatura"
+                    >Seleccione version de una asignatura:</label
+                  >
+                  <select
+                    class="form-select"
+                    name="asignatura"
+                    id="asignatura"
+                    ria-label="Default select example"
+                  >
+                    <option selected>Selecione el periodo</option>
+                    {% for asignatura in asignaturas %}
+                    <option value="{{ asignatura.id }}">
+                      {{ asignatura.nombre_asignatura }}
+                    </option>
+                    {% endfor %}</select
+                  ><br />
+                  <button class="btn btn-primary" type="submit">
+                    Seleccionar
+                  </button>
+                </form>
+                {% if msg %}
+                <div class="alert alert-success" role="alert">{{ msg }}</div>
+                {% endif %}
+              </div>
             </div>
+          </div>
         </div>
+      </div>
     </div>
   </div>
 </div>
+<!--<script>
+  // Función para mostrar los cambios en el cuadro de "cambios"
+  function mostrarCambios(cambio) {
+    var cambiosDiv = document.getElementById("cambios");
+    cambiosDiv.innerHTML += "<p>" + cambio + "</p>";
+  }
+
+  // Función que se ejecutará cada vez que haya un cambio en la página
+  function registrarCambio(evento) {
+    var cambio = evento.target.tagName + " " + evento.target.id + " ha sido modificado.";
+    mostrarCambios(cambio);
+  }
+
+  // Agregar un eventListener a todos los elementos de la página
+  var elementos = document.getElementsByTagName("*");
+  for (var i = 0; i < elementos.length; i++) {
+    elementos[i].addEventListener("change", registrarCambio);
+  }
+</script>-->
 {% endblock content %}

@@ -35,3 +35,7 @@ def malladc_view(request, id):
     return render(request, 'malladc.html', {
         'asignatura': asignatura
     })
+
+
+def vista_pdf(request):
+    return render(request, 'index.html', {})

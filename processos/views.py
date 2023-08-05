@@ -1,8 +1,7 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, HttpResponse
 from .models import Trabajador, Asignatura, Referencias, ProductoAcademico, Unidades, Controlador
 from django.db import transaction
-
-# Create your views here.
+from django.contrib.auth.decorators import login_required
 
 
 def login_view(request):
@@ -36,16 +35,17 @@ def login_view(request):
     })
 
 
+def dashboard_view(request):
+
+    return render(request, 'dashboard.html', {})
+
+
 def forgot_view(request):
     return render(request, 'forgot.html', {})
 
 
 def recover_view(request):
     return render(request, 'recoverpsw.html', {})
-
-
-def dashboard_view(request):
-    return render(request, 'dashboard.html', {})
 
 
 def datosinfo_view(request):
@@ -90,7 +90,6 @@ def datosinfo_view(request):
                                               datosAsignatura, 'msg': msg,  'msg1': msg1})
 
 
-@transaction.atomic
 def trabajador_view(request):
     datosTrabajador = Trabajador.objects.filter(estado='A')
     msg = ""
@@ -205,7 +204,8 @@ def unidades_view(request):
             )
             unidades.save()
             msg1 = "Registro exitoso."
-    return render(request, 'datosinfo.html', {})
+    return render(request, 'datosinfo.html', {'datosUnidades':
+                                              datosUnidades, 'msg': msg})
 
 
 def datosrg_view(request):
@@ -224,15 +224,18 @@ def controlador_view(request):
     objet_Asignatura = Asignatura.objects.filter(estado="A")
     if request.method == "POST":
         asignatura_id = int(request.POST["asignatura"])
-        return redirect('malla', id=asignatura_id)
+        return redirect('mallaCurricular', id=asignatura_id)
     return render(request, 'controlador.html', {'asignaturas': objet_Asignatura})
 
 
-def mallaCurricular_view(request, asignatura_id):
+def mallaCurricular_view(request, id):
     try:
-        asignatura = Asignatura.objects.get(id=asignatura_id, estado='A')
-        controladores = Controlador.objects.filter(id_asignatura=asignatura_id)
-    except Asignatura.DoesNotExist:
+        asignatura = Asignatura.objects.filter(id=int(id), estado='A')
+        logger.warning('Esta es una alerta importante')
+        # controladores = Controlador.objects.filter(pk=asignatura)
+    except:
         return redirect('controlador')
 
-    return render(request, 'malla_curricular.html', {'asignatura': asignatura, 'controladores': controladores})
+    return render(request, 'malla.html', {
+        'asignatura': asignatura
+    })

@@ -10,11 +10,12 @@
                         <form method="post">
                             {% csrf_token %}
                             <label for="asignatura">Seleccione una asignatura:</label>
-                            <select class="form-select" name="asignatura" id="asignatura" ria-label="Default select example">
+                            <select class="form-select" name="asignatura" id="asignatura"
+                                ria-label="Default select example">
                                 <option selected>Selecione el periodo</option>
-                                    {% for asignatura in asignaturas %}
-                                    <option value="{{ asignatura.id }}">{{ asignatura.nombre_asignatura }}</option>
-                                    {% endfor %}
+                                {% for asignatura in asignaturas %}
+                                <option value="{{ asignatura.id }}">{{ asignatura.nombre_asignatura }}</option>
+                                {% endfor %}
                             </select><br>
                             <button class="btn btn-primary" type="submit">Seleccionar</button>
                         </form>

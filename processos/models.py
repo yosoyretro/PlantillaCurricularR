@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 # Create your models here.
 
 
@@ -64,14 +64,14 @@ class Contenido(models.Model):
     estado = models.CharField(max_length=3, default='A')
 
 
-class versiontest(models.Model):
+class Versiontest(models.Model):
     id = models.IntegerField(primary_key=True)
     nombre_version = models.CharField(max_length=200)
     fecha_creacion = models.DateField()
     estado = models.CharField(max_length=3, default='A')
 
 
-class responsables(models.Model):
+class Responsables(models.Model):
     id = models.IntegerField(primary_key=True)
     nombre_responsable = models.CharField(max_length=200)
     cargo_responsable = models.CharField(max_length=200)
@@ -80,8 +80,13 @@ class responsables(models.Model):
 
 
 class Controlador(models.Model):
-    id_asignatura = models.ForeignKey()
-    id_productoAcademico = models.ForeignKey()
-    id_unidades = models.ForeignKey()
-    id_contenido = models.ForeignKey()
-    id_responsable = models.ForeignKey()
+    id = models.IntegerField(primary_key=True)
+    asignatura = models.ForeignKey(Asignatura, on_delete=models.CASCADE)
+    # Sin el apóstrofo al final de 'CASCADE'
+    referencia = models.ForeignKey(Referencias, on_delete=models.CASCADE)
+    producto_academico = models.ForeignKey(
+        ProductoAcademico, on_delete=models.CASCADE)
+    unidad = models.ForeignKey(Unidades, on_delete=models.CASCADE)
+    contenido = models.ForeignKey(Contenido, on_delete=models.CASCADE)
+    responsable = models.ForeignKey(Responsables, on_delete=models.CASCADE)
+    estado = models.CharField(max_length=3, default='A')

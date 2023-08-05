@@ -1,54 +1,47 @@
 {% extends "dbs_docente.html" %}
 {% block content %}
-<h1>Versiones - {{ asignatura.id }}</h1>
-<div class="row align-items-md-stretch">
-    <div class="cardcol-md-6 w-100">
-        <div class="p-5 text-bg-dark rounded-3 text-center">
-            <h1 class="text-ºcenter lead"></h1>
-            <br />
-            <table class="small table accordion table-bordered rounded">
-                <thead class="text-lg-center text-white" style="background-color: #274386">
-                    <tr>
-                        <th class="align-middle align-top">Nombre de version</th>
-                        <th class="align-middle align-top">Fecha de creacion</th>
-                </thead>
-            </table>
-            {% if msg %}
-            <div class="alert alert-success" role="alert">{{ msg }}</div>
-            {% endif %}
-            <div class="p-2">
-                <button class="btn btn-success" type="button" class="btn btn-primary" data-bs-toggle="modal"
-                    data-bs-target="#myModal">
-                    Editar
-                </button>
-                <button class="btn btn-danger" type="submit" name="eliminar">
-                    Eliminar Malla
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body">
-                <form method="post">
-                    {% csrf_token %}
-                    <div>
-                        <div class="form-control p-3">
-                            <div class="select">
 
-                                <label for="asignatura">Seleccione una asignatura:</label>
-                                <select class="form-select" name="asignatura" id="asignatura"
-                                    ria-label="Default select example">
-                                    <option selected>Selecione el periodo</option>
-                                    {% for unidades in unidades %}
-                                    <option value="{{ unidades.id }}">{{ asignatura.nombre_unidad }}</option>
-                                    {% endfor %}
-                                </select><br>
-                            </div>
-                        </div>
-                </form>
+<div class="d-flex" id="wrapper">
+    <div class="container-fluid">
+        <h1 class="text-center">Versiones - {{ asignatura.nombre_asignatura }}</h1>
+        <div class="row align-items-md-stretch">
+            <div class="cardcol-md-6 w-100">
+                <div class="p-5 text-bg-dark rounded-3 text-center">
+                    <h1 class="text-ºcenter lead"></h1>
+                    <br />
+                    <table class="small table accordion table-bordered rounded">
+                        <thead class="text-lg-center text-white" style="background-color: #274386">
+                            <tr>
+                                <th class="align-middle align-top">Nombre de version</th>
+                                <th class="align-middle align-top">Fecha de creacion</th>
+                                <th class="align-middle align-top">Responsable</th>
+                                <th class="align-middle align-top">Acciones</th>
+                        </thead>
+                        <tbody class="texto-pequeño">
+                            <td>microcurricular 2022</td>
+                            <td>17/08/2022</td>
+                            <td>Jordy Fajardo</td>
+                            <td>
+                                <div class="p-2">
+                                    <button class="btn btn-success" type="button" class="btn btn-primary">
+                                        <a href="{% url 'docente:pdf' %}">Abrir</a>
+                                    </button>
+                                    <button class="btn btn-primary" type="button" class="btn btn-primary"
+                                        data-bs-toggle="modal" data-bs-target="#myModal">
+                                        Editar
+                                    </button>
+                                    <button class="btn btn-danger" type="submit" name="eliminar">
+                                        Eliminar Versio
+                                    </button>
+                                </div>
+                            </td>
+
+                        </tbody>
+                    </table>
+                    {% if msg %}
+                    <div class="alert alert-success" role="alert">{{ msg }}</div>
+                    {% endif %}
+                </div>
             </div>
         </div>
     </div>
