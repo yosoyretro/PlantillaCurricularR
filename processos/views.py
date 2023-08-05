@@ -1,5 +1,5 @@
 from django.shortcuts import redirect, render
-from .models import Trabajador, Asignatura, Referencias, ProductoAcademico, Unidades, Contenido
+from .models import Trabajador, Asignatura, Referencias, ProductoAcademico, Unidades, Controlador
 from django.db import transaction
 
 # Create your views here.
@@ -228,6 +228,11 @@ def controlador_view(request):
     return render(request, 'controlador.html', {'asignaturas': objet_Asignatura})
 
 
-def mallaCurricular_view(request, id):
-    asignatura = Asignatura.objects.filter(id=int(id), estado="A")
-    return render(request, 'malla.html', {})
+def mallaCurricular_view(request, asignatura_id):
+    try:
+        asignatura = Asignatura.objects.get(id=asignatura_id, estado='A')
+        controladores = Controlador.objects.filter(id_asignatura=asignatura_id)
+    except Asignatura.DoesNotExist:
+        return redirect('controlador')
+
+    return render(request, 'malla_curricular.html', {'asignatura': asignatura, 'controladores': controladores})
