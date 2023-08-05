@@ -1,0 +1,103 @@
+{% extends 'dashboard.html' %}
+{% block body %}
+<div class="d-flex" id="wrapper">
+    <!-- Sidebar-->
+    <div class="border-end bg-white" id="sidebar-wrapper">
+        <div class="sidebar-heading border-bottom bg-light"><b>ISTG</b></div>
+        <div class="list-group list-group-flush">
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'planificacion' %}">Planificacion</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Editar Datos</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Presentaciones</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'versiones' %}">Versiones</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Perfil</a>
+            <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Estado</a>
+        </div>
+    </div>
+    <!-- Page content wrapper-->
+    <div id="page-content-wrapper">
+        <!-- Top navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+            <div class="container-fluid">
+                <button class="btn btn-primary" id="sidebarToggle">Menu</button>
+                <!-- Logo -->
+                <img src="{% static 'img/logo2.png' %}" style="max-width: 40%; height: auto;">
+                <!-- Navbar Collapse Button -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Navbar Links -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+                        <li class="nav-item active"><a class="nav-link" href="dashboard.html">Inicio</a></li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Usuario</a>
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="#!">Perfil</a>
+                                <a class="dropdown-item" href="#!">Configuracion</a>
+                                <div class="dropdown-divider"></div>
+                                <a class="dropdown-item" href="{% url 'login' %}">Cerrar Sesion</a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container-fluid">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb p-3 bg-body-tertiary rounded-3">
+                    <li class="breadcrumb-item">
+                        <a class="link-body-emphasis" href="{% url 'dashboard' %}">
+                            <i class="material-icons">home</i>
+                            <span class="visually-hidden"></span>
+                        </a>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a class="link-body-emphasis fw-semibold text-decoration-none"
+                            href="{% url 'versiones' %}">Versiones</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        Hisotiral
+                    </li>
+                </ol>
+            </nav>
+            <h1 class="mt-4"></h1>
+            <div class="row align-items-md-stretch">
+                <div class="col-md-6">
+                    <div class="h-100 p-5 text-bg-dark rounded-3">
+                        <h2><b>Historial</b></h2>
+                        <button id="addbto" class="btn btn-outline-light" type="button">
+                            <i class="material-icons">add</i>
+                            <span class="visually-hidden"></span>
+                        </button>
+                    </div>
+                    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <!-- Contenido del modal -->
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Título del Modal</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Contenido del modal aquí...</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                    <button type="button" class="btn btn-primary">Guardar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock body %}
