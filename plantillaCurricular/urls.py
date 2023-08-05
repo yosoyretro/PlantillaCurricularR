@@ -28,6 +28,8 @@ urlpatterns = [
     path('producto/', views.producto_view, name='producto'),
     path('referencias/', views.referencias_view, name='referencias'),
     path('docente/', views.docente_view, name='docente'),
+    path('perfil/', views.perfil_view, name='perfil'),
+    path('configuracion/', views.configuracion_view, name='configuracion'),
     path('unidades/', views.unidades_view, name='unidades'),
     path('admin/', admin.site.urls),
 ]

@@ -24,7 +24,7 @@
                 <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'datosinfo' %}">Datos Informativos</a>
                 <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'unidades' %}">Unidades</a>
                 <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Editar Datos</a>
-                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Presentaciones</a>
+                <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#">Presentaciones</a>
                 <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'producto' %}">Productos Acádemicos</a>
                 <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'referencias' %}">Crear Referencias</a>
                 <a class="list-group-item list-group-item-action list-group-item-light p-3" href="{% url 'docente' %}">Cambiar a Docente</a>
@@ -56,8 +56,8 @@
                                 <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Usuario</a>
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="#!">Perfil</a>
-                                    <a class="dropdown-item" href="#!">Configuracion</a>
+                                    <a class="dropdown-item" href="{% url 'perfil' %}">Perfil</a>
+                                    <a class="dropdown-item" href="{% url 'configuracion' %}">Configuracion</a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="{% url 'login' %}">Cerrar Sesion</a>
                                 </div>
@@ -68,7 +68,7 @@
             </nav>
             {% block content %}
             <div class="container-fluid">
-                <h1 class="mt-4 text-center">Bienvenido</h1>
+                <h1 class="mt-4 text-center">¡Bienvenido!</h1>
                 <div class="row align-items-md-stretch">
                     <div class="col-md-6">
                         <div class="h-100 p-5 text-bg-dark rounded-3">
@@ -92,7 +92,7 @@
                 <div class="row align-items-md-stretch">
                     <div class="col-md-6">
                         <div class="h-100 p-5 text-bg-dark rounded-3">
-                            <h2><b>Trabajadores</b></h2>
+                            <h2><b>Usuarios</b></h2>
                             <ul>
                                 <li>
                                     <p>Creación de usuarios</p>

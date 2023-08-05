@@ -4,7 +4,34 @@ from django.db import transaction
 
 # Create your views here.
 def login_view(request):
-    return render(request, 'login.html', {})
+    ok = None
+    msg = None
+    if request.method == "POST":
+        usuarioInput = request.POST["username"]
+        claveInput = request.POST["password"]
+        rolInput = request.POST.get("rol")  # Assuming the name of the select element is "rol"
+
+        try:
+            objTrabajador = Trabajador.objects.get(correo=usuarioInput, estado='A', rol=rolInput)
+
+            if objTrabajador.contrasena == claveInput:
+                request.session['usuario'] = f"{objTrabajador.correo} {objTrabajador.contrasena}"
+                return redirect('dashboard')
+            else:
+                ok = False
+                msg = "Credenciales Inválidas"
+        except Trabajador.DoesNotExist:
+            ok = False
+            msg = "Este usuario no está registrado en nuestra base de datos"
+        except Trabajador.MultipleObjectsReturned:
+            ok = False
+            msg = "Error: Hay múltiples usuarios con la misma información de inicio de sesión. Comuníquese con el administrador del sistema."
+
+    return render(request, 'login.html', {
+        'ok': ok,
+        'msg': msg
+    })
+
 
 def forgot_view(request):
     return render(request, 'forgot.html', {})
@@ -175,3 +202,9 @@ def unidades_view(request):
             unidades.save()
             msg1 = "Registro exitoso."
     return render(request, 'unidades.html',{})
+
+def perfil_view(request):
+    return render(request, 'perfil.html',{})
+
+def configuracion_view(request):
+    return render(request, 'configuracion.html',{})
