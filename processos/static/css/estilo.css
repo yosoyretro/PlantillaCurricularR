@@ -1,17 +1,20 @@
-.boton-guayaquil{
-    background-color:#274386;
-    color:white;
-    border:none;
-    width: 100px;
-    height: 35px;
-    border-radius: 5px;
+.boton-guayaquil {
+  background-color: #274386;
+  color: white;
+  border: none;
+  width: 100px;
+  height: 35px;
+  border-radius: 5px;
 }
 .a {
-    color: #fff;
-    text-decoration: none;   
+  color: #fff;
+  text-decoration: none;
 }
 
+.texto-f2 {
+  font-size: 1px;
+}
 
-.texto-azul-oscuro{
-    color:#274386;
+.texto-azul-oscuro:hover {
+  color: #274386;
 }

@@ -1,66 +1,53 @@
-{% extends "dbs_docente.html" %}
-{% block content %}
+{% extends "dbs_docente.html" %} {% block content %}
 <div class="d-flex" id="wrapper">
-    <div class="container-fluid">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb p-3 bg-body-tertiary rounded-3">
-                <li class="breadcrumb-item">
-                    <a class="link-body-emphasis" href="{% url 'docente:docente' %}">
-                        <i class="material-icons">home</i>
-                        <span class="visually-hidden"></span>
-                    </a>
-                </li>
-                <li class="breadcrumb-item">
-                    <a class="link-body-emphasis fw-semibold text-decoration-none" href="{% url 'docente:versiones' %}">Versiones</a>
-                </li>
-                <li class="breadcrumb-item active" aria-current="page">
-                    Registrar
-                </li>
-            </ol>
-        </nav>
-<div class="p-5 text-bg-dark rounded-3">
-    <h2 class="title" style="text-align: center;">Version_1_microcurricular</h2>
-    <button class="btn btn-primary" type="button" style="background-color:#e5e5e5" data-bs-toggle="modal" data-bs-target="#myModal">
-    Abrir</button>
-    </div>
-    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-body">
-                    <form method="post">
-                        {% csrf_token %}
-                        <div >
-                            <div class="form-control p-3">
-                                
-                                <label>Nombres<span class="text-danger">*</span></label>
-                                <input type="text" class="form-control rounded-3" name="nombres_trab" id="floatingInput"
-                                    placeholder="Ingrese los Nombres" required>
-                            
-                                <label>Apellidos <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control rounded-3" name="apellidos_trab" id="floatingInput"
-                                    placeholder="Ingrese los Apellidos" required><br>
-                                <label>Cédula de identidad <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control rounded-3" name="cedula_trab" id="floatingInput"
-                                    placeholder="Ingrese la Cédula" required><br>
-                                <label>Correo <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control rounded-3" name="correo_trab" id="floatingInput"
-                                    placeholder="Ingrese el Correo" required><br>
-                                <label>Contraseña <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control rounded-3" name="contrasena_trab" id="floatingInput"
-                                    placeholder="Ingrese la Contraseña" required><br>
-                                <label>Rol del Trabajador <span class="text-danger">*</span></label>
-                                <select class="form-select" name="rol_trab" aria-label="Default select example">
-                                    <option selected>Selecione el Rol</option>
-                                    <option value="Profesor">Profesor</option>
-                                    <option value="Admin">Admin</option>
+  <div class="container-fluid">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb p-3 bg-body-tertiary rounded-3">
+        <li class="breadcrumb-item">
+          <a class="link-body-emphasis" href="{% url 'docente:docente' %}">
+            <i class="material-icons">home</i>
+            <span class="visually-hidden"></span>
+          </a>
+        </li>
+        <li class="breadcrumb-item">
+          <a
+            class="link-body-emphasis fw-semibold text-decoration-none"
+            href="{% url 'docente:versiones' %}"
+            >Versiones</a
+          >
+        </li>
+        <li class="breadcrumb-item active" aria-current="page">Registrar</li>
+      </ol>
+    </nav>
+    <div class="row align-items-md-stretch">
+        <div class="d-flex" id="wrapper">
+            <div class="container-fluid">
+                <div class="row align-items-md-stretch">
+                    <div class="col-md-6 w-100">
+                        <div class="p-5 text-bg-dark rounded-3">
+                            <h2 class="title" style="text-align: center;">Historial de versiones</h2><br>
+                            <form method="post">
+                                {% csrf_token %}
+                                <label for="asignatura">Seleccione version de una asignatura:</label>
+                                <select class="form-select" name="asignatura" id="asignatura" ria-label="Default select example">
+                                    <option selected>Selecione el periodo</option>
+                                        {% for asignatura in asignaturas %}
+                                        <option value="{{ asignatura.id }}">{{ asignatura.nombre_asignatura }}</option>
+                                        {% endfor %}
                                 </select><br>
-                                <button class="boton-guayaquil w-100" name="crear" type="submit">Guardar</button>
+                                <button class="btn btn-primary" type="submit">Seleccionar</button>
+                            </form>
+                            {% if msg %}
+                            <div class="alert alert-success" role="alert">
+                                {{ msg }}
+                            </div>
+                            {% endif %}
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    </div>
+  </div>
 </div>
 {% endblock content %}

@@ -29,19 +29,19 @@
                     <h1 class="texto-azul-oscuro">Usuarios Creados</h1>
                 </div>
                 <div class="p-5 text-bg-dark rounded-3 text-center">
-                    <table class="table accordion table-bordered rounded">
-                        <thead class="text-white bg-danger">
-                            <tr>
-                                <th> Nombres </th>
-                                <th> Apellidos </th>
-                                <th> Cédula de identidad </th>
-                                <th> Correo </th>
-                                <th> Rol </th>
-                                <th> Contraseña </th>
-                                <th>Acciones</th>
+                    <table class="small table accordion table-bordered rounded">
+                        <thead class="text-white text-center" style="background:#274386">
+                            <tr class="align-middle">
+                                <th class="fz-1">Nombres</th>
+                                <th class="fz-1">Apellidos</th>
+                                <th class="fz-1">Cédula de identidad</th>
+                                <th class="fz-1">Correo</th>
+                                <th class="fz-1">Rol</th>
+                                <th class="fz-1">Contraseña</th>
+                                <th class="fz-1">Acciones</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="fs-6s">
                             {% for trabajador in datosTrabajador %}
                             <tr>
                                 <td>{{ trabajador.nombres }}</td>

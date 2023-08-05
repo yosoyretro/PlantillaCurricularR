@@ -3,18 +3,20 @@ from .models import Trabajador, Asignatura, Referencias, ProductoAcademico, Unid
 from django.db import transaction
 
 # Create your views here.
+
+
 def login_view(request):
     ok = None
     msg = None
     if request.method == "POST":
         usuarioInput = request.POST["username"]
         claveInput = request.POST["password"]
-        rolInput = request.POST.get("rol") 
+        rolInput = request.POST.get("rol")
         try:
-            objtrabajado = Trabajador.objects.get(correo=usuarioInput) 
+            objtrabajado = Trabajador.objects.get(correo=usuarioInput)
             print(objtrabajado)
             if objtrabajado:
-                if(objtrabajado.rol == rolInput and objtrabajado.contrasena == claveInput):
+                if (objtrabajado.rol == rolInput and objtrabajado.contrasena == claveInput):
                     if rolInput == "Admin":
                         return redirect('dashboard')
                     elif rolInput == "Profesor":
@@ -27,7 +29,7 @@ def login_view(request):
             print("error ren la base de datos")
             ok = False
             msg = "Este usuario no está registrado en nuestra base de datos"
-        
+
     return render(request, 'login.html', {
         'ok': ok,
         'msg': msg
@@ -37,18 +39,20 @@ def login_view(request):
 def forgot_view(request):
     return render(request, 'forgot.html', {})
 
+
 def recover_view(request):
-    return render(request, 'recoverpsw.html',{})
+    return render(request, 'recoverpsw.html', {})
+
 
 def dashboard_view(request):
-    return render(request, 'dashboard.html',{})
+    return render(request, 'dashboard.html', {})
+
 
 def datosinfo_view(request):
     datosAsignatura = Asignatura.objects.filter(estado='A')
     msg = ""
     msg1 = ""
 
-    
     if request.method == 'POST':
         if "eliminar" in request.POST:
             asignatura_id = request.POST["eliminar"]
@@ -69,7 +73,6 @@ def datosinfo_view(request):
             objetivos_es = request.POST["objetivos_especi"]
             aportes_egreso = request.POST["aportes_perfil"]
             producto_ac = request.POST["producto_academ"]
-            
 
             asignatura = Asignatura(
                 nombre_asignatura=asignatura,
@@ -83,14 +86,15 @@ def datosinfo_view(request):
             )
             asignatura.save()
             msg1 = "Registro exitoso."
-    return render(request, 'datosinfo.html',{'datosAsignatura':
-    datosAsignatura, 'msg': msg,  'msg1':msg1})
+    return render(request, 'datosinfo.html', {'datosAsignatura':
+                                              datosAsignatura, 'msg': msg,  'msg1': msg1})
+
 
 @transaction.atomic
 def trabajador_view(request):
     datosTrabajador = Trabajador.objects.filter(estado='A')
     msg = ""
-    msg1=""
+    msg1 = ""
 
     if request.method == 'POST':
         if "eliminar" in request.POST:
@@ -121,7 +125,8 @@ def trabajador_view(request):
             )
             trabajador.save()
             msg1 = "Trabajador creado exitosamente."
-    return render(request, 'Registrar.html', {'datosTrabajador': datosTrabajador, 'msg': msg, 'msg1':msg1})
+    return render(request, 'Registrar.html', {'datosTrabajador': datosTrabajador, 'msg': msg, 'msg1': msg1})
+
 
 def producto_view(request):
     datosProducto = ProductoAcademico.objects.filter(estado='A')
@@ -142,7 +147,8 @@ def producto_view(request):
             integracion=integracion_as
         )
         producto.save()
-    return render(request, 'producto.html',{'datosProducto': datosProducto, 'msg':msg})    
+    return render(request, 'datosinfo.html', {'datosProducto': datosProducto, 'msg': msg})
+
 
 def referencias_view(request):
     datosReferencias = Referencias.objects.filter(estado='A')
@@ -163,15 +169,15 @@ def referencias_view(request):
             numero_ejemplares=numero
         )
         referencias.save()
-    return render(request, 'referencias.html',{'datosReferencias':
-    datosReferencias, 'msg': msg})
+    return render(request, 'datosinfo.html', {'datosReferencias':
+                                              datosReferencias, 'msg': msg})
+
 
 def unidades_view(request):
     datosUnidades = Unidades.objects.filter(estado='A')
     msg = ""
     msg1 = ""
 
-    
     if request.method == 'POST':
         if "eliminar" in request.POST:
             unidades_id = request.POST["eliminar"]
@@ -188,7 +194,7 @@ def unidades_view(request):
             objetivo_u = request.POST["objetivo_uni"]
             numero_u = request.POST[""]
             horas_do = request.POST["horas_doce"]
-            horas_pra = request.POST["horas_pract"]          
+            horas_pra = request.POST["horas_pract"]
 
             unidades = Asignatura(
                 nombre_unidad=unidad,
@@ -199,32 +205,29 @@ def unidades_view(request):
             )
             unidades.save()
             msg1 = "Registro exitoso."
-    return render(request, 'unidades.html',{})
+    return render(request, 'datosinfo.html', {})
+
+
+def datosrg_view(request):
+    return render(request, 'datosrg.html', {})
+
 
 def perfil_view(request):
-    return render(request, 'perfil.html',{})
+    return render(request, 'perfil.html', {})
+
 
 def configuracion_view(request):
-    return render(request, 'configuracion.html',{})
+    return render(request, 'configuracion.html', {})
+
 
 def controlador_view(request):
     objet_Asignatura = Asignatura.objects.filter(estado="A")
     if request.method == "POST":
         asignatura_id = int(request.POST["asignatura"])
-        return redirect('controlador_view', id=asignatura_id)
-    
+        return redirect('malla', id=asignatura_id)
     return render(request, 'controlador.html', {'asignaturas': objet_Asignatura})
 
-def mallaCurricular_view(request, id):
-    #return redirect('controlador_view')
-    
-    asignatura = Asignatura.objects.get(id=id, estado='A')
-    objet_unidades = Unidades.objects.filter(id_asignatura=asignatura, estado='A')
-    
-    dcon = {}
-    for unidades in objet_unidades:
-        contenidos = Contenido.objects.filter(id_unidad=unidades, estado='A')
-        dcon[unidades] = contenidos
 
-    return render(request, 'controlador.html', {})
-    
+def mallaCurricular_view(request, id):
+    asignatura = Asignatura.objects.filter(id=int(id), estado="A")
+    return render(request, 'malla.html', {})

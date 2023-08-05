@@ -1,6 +1,5 @@
 {% extends "dashboard.html" %}
 {% block content %}
-<hr>
 <div class="row align-items-md-stretch">
     <div class="d-flex" id="wrapper">
         <div class="container-fluid">
@@ -11,13 +10,13 @@
                         <form method="post">
                             {% csrf_token %}
                             <label for="asignatura">Seleccione una asignatura:</label>
-        <select class="form-select" name="asignatura" id="asignatura" ria-label="Default select example">
-            <option selected>Selecione el periodo</option>
-            {% for asignatura in asignaturas %}
-                <option value="{{ asignatura.id }}">{{ asignatura.nombre_asignatura }}</option>
-            {% endfor %}
-        </select><br>
-        <button class="btn btn-primary" type="submit">Seleccionar</button>
+                            <select class="form-select" name="asignatura" id="asignatura" ria-label="Default select example">
+                                <option selected>Selecione el periodo</option>
+                                    {% for asignatura in asignaturas %}
+                                    <option value="{{ asignatura.id }}">{{ asignatura.nombre_asignatura }}</option>
+                                    {% endfor %}
+                            </select><br>
+                            <button class="btn btn-primary" type="submit">Seleccionar</button>
                         </form>
                         {% if msg %}
                         <div class="alert alert-success" role="alert">

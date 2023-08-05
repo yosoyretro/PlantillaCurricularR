@@ -1,0 +1,25 @@
+{% extends "dashboard.html" %}
+{% block content %}
+<div class="d-flex" id="wrapper">
+    <div class="container-fluid">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb p-3 bg-body-tertiary rounded-3">
+                <li class="breadcrumb-item">
+                    <a class="link-body-emphasis" href="{% url 'dashboard' %}">
+                        <i class="material-icons">home</i>
+                        <span class="visually-hidden"></span>
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a class="link-body-emphasis fw-semibold text-decoration-none" href="{% url 'datosguardados' %}">Datos
+                        Guardados</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    Editar
+                </li>
+            </ol>
+        </nav>
+        
+    </div>
+</div>
+{% endblock content %}

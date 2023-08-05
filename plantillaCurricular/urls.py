@@ -25,10 +25,12 @@ urlpatterns = [
     path('recover/', views.recover_view, name='recover'),
     path('dashboard/', views.dashboard_view, name='dashboard'),
     path('datosinformativos/', views.datosinfo_view, name='datosinfo'),
+    path('datosguardados', views.datosrg_view, name='datosguardados'),
     path('trabajador', views.trabajador_view, name='trabajador'),
     path('perfil/', views.perfil_view, name='perfil'),
     path('configuracion/', views.configuracion_view, name='configuracion'),
     path('controlador/', views.controlador_view, name='controlador'),
+    path('malla/<int:id>', views.mallaCurricular_view, name='malla'),
     path('admin/', admin.site.urls),
     path('docente/',include('docente.urls'),name="docente")
 ]
