@@ -1,14 +1,96 @@
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="es">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}Login{% endblock title %}</title>
+    <title>{% block title %}Iniciar Sesion{% endblock title %}</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="icon" href="{% static 'css/logo.png' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
+
 <body>
     {% block body %}
-        <h1>Aqui </h1>
+        <div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog"
+            id="modalSignin">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content shadow">
+                    <div class="modal-header p-5 pb-4 justify-content-center">
+                        <div style="text-align: center;">
+                            <a href="https://istg.edu.ec/">
+                            </a>
+                            <img src="{% static 'img/logo.png' %}" alt="Logo">
+                        </div>
+                    </div>
+                    <div class="modal-body p-5">
+                        <form method="post" action="{% url 'login' %}">
+                            {% csrf_token %}
+                            {% if ok == False %}
+                                <div class="alert alert-danger" role="alert">
+                                    <strong>Error:</strong> {{ msg }}
+                                </div>
+                            {% endif %}
+                            <div class="form-floating mb-3">
+                                <input type="text" name="username" class="form-control rounded-3" id="floatingInput" required placeholder="name@example.com">
+                                <label for="floatingInput">Correo institucional</label>
+                            </div>
+                            <div class="form-floating mb-3">
+                                <input type="password" name="password" class="form-control rounded-3" id="floatingPassword" required placeholder="Contraseña">
+                                <label for="floatingPassword">Contraseña</label>
+                            </div>
+                            <div class="checkbox mb-3">
+                                <label>
+                                    <input type="checkbox" name="remember_me" value="1"><b> Recordarme</b>
+                                </label>
+                            </div>
+                            {% if error_message %}
+                            <div class="alert alert-danger" role="alert">
+                                {{ error_message }}
+                            </div>
+                            {% endif %}
+                            <select name="rol" class="w-100 mb-2 btn btn-light rounded-3 btn-primary">
+                                <option value="1">Selecciona tu rol</option>
+                                <option value="Admin">Administrador</option>
+                                <option value="Profesor">Docente</option>
+                            </select>
+                            <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">Iniciar</button>
+                            <hr class="my-4">
+                            <small class="text-body-secondary"><a href="{% url 'forgot' %}">¿Olvidaste tu contraseña?</a></small>
+                        </form>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    <footer>
+        <div class="container">
+            <footer class="py-3 my-4">
+                <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                    <li class="nav-item"><a href="https://istg.edu.ec/historia/"
+                            class="nav-link px-2 text-body-secondary">¿Quienes Somos?</b></a></li>
+                    <li class="nav-item"><a href="http://siga.institutos.gob.ec:8080/siga-web/ariel.jsf"
+                            class="nav-link px-2 text-body-secondary">Siga</a></li>
+                    <li class="nav-item"><a href="https://istg.edu.ec/admisiones/"
+                            class="nav-link px-2 text-body-secondary">Admisiones</a></li>
+                    <li class="nav-item"><a href="https://istg.edu.ec/vinculacion-con-la-comunidad/"
+                            class="nav-link px-2 text-body-secondary">Vinculacion</a></li>
+                    <li class="nav-item"><a href="https://smartlink.metricool.com/public/smartlink/istg_ec"
+                            class="nav-link px-2 text-body-secondary">Redes Sociales</a></li>
+                </ul>
+                <br>
+                <p style="text-align:center">2023 &copy; Todos los derechos reservados</p>
+            </footer>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
+        </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
+        </script>
     {% endblock body %}
 </body>
+
 </html>

@@ -1,0 +1,58 @@
+{% extends 'login.html' %}
+{% block body %}
+<form class="login-box" method="get" action="{% url 'dashboard' %}">
+    <div class="modal modal-sheet position-static d-block bg-body-secondary p-4 py-md-5" tabindex="-1" role="dialog"
+        id="modalSignin">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content rounded-4 shadow">
+                <div class="modal-header p-5 pb-4" id="titulo">
+                    <h3>Ingrese su nueva contraseña y confirmela para actualizarla.</h3>
+                </div>
+                <div class="modal-body p-5">
+                    <form class="login-box" method="get">
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control rounded-3" id="floatingPassword" required
+                                placeholder="Password">
+                            <label for="floatingPassword">Contraseña</label>
+                        </div>
+                        <div class="form-floating mb-3">
+                            <input type="password" class="form-control rounded-3" id="floatingPassword" required
+                                placeholder="Password">
+                            <label for="floatingPassword">Confirmar contraseña</label>
+                        </div>
+                        <button class="w-100 mb-2 btn btn-lg rounded-3 btn-primary" type="submit">Actualizar
+                            contraseña</button>
+                        <hr class="my-4">
+                        <small class="text-body-secondary"><a href="{% url 'login' %}">Cancelar</a></small>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <footer class="py-3 my-4">
+                <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+                    <li class="nav-item"><a href="https://istg.edu.ec/historia/"
+                            class="nav-link px-2 text-body-secondary">¿Quienes Somos?</b></a></li>
+                    <li class="nav-item"><a href="http://siga.institutos.gob.ec:8080/siga-web/ariel.jsf"
+                            class="nav-link px-2 text-body-secondary">Siga</a></li>
+                    <li class="nav-item"><a href="https://istg.edu.ec/admisiones/"
+                            class="nav-link px-2 text-body-secondary">Admisiones</a></li>
+                    <li class="nav-item"><a href="https://istg.edu.ec/vinculacion-con-la-comunidad/"
+                            class="nav-link px-2 text-body-secondary">Vinculacion</a></li>
+                    <li class="nav-item"><a href="https://smartlink.metricool.com/public/smartlink/istg_ec"
+                            class="nav-link px-2 text-body-secondary">Redes Sociales</a></li>
+                </ul><br>
+                <div style="text-align: center;">
+                    <a href="https://istg.edu.ec/">
+                        {% load static %}
+                        <img src="{% static 'img/logo2.png' %}" alt="Logo">
+                    </a>
+                </div><br>
+                <p style="text-align:center">2023 &copy; Todos los derechos reservados</p>
+            </footer>
+        </div>
+    </footer>
+</form>
+{% endblock body %}

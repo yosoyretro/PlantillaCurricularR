@@ -1,0 +1,121 @@
+{% extends "dashboard.html" %}
+{% block content %}
+<div class="d-flex" id="wrapper">
+    <div class="container-fluid">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb p-3 bg-body-tertiary rounded-3">
+                <li class="breadcrumb-item">
+                    <a class="link-body-emphasis" href="{% url 'dashboard' %}">
+                        <i class="material-icons">home</i>
+                        <span class="visually-hidden"></span>
+                    </a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a class="link-body-emphasis fw-semibold text-decoration-none"
+                        href="{% url 'trabajador' %}">Trabajador</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                    Crear trabajador
+                </li>
+            </ol>
+        </nav>
+        
+        <div class="p-2">
+            <button class="boton-guayaquil" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal">Crear</button>
+        </div>
+        <div class="row align-items-md-stretch">
+            <div class="col-md-6 w-100">
+                <div class="m-4 text-center">
+                    <h1 class="texto-azul-oscuro">Usuarios Creados</h1>
+                </div>
+                <div class="p-5 text-bg-dark rounded-3 text-center">
+                    <table class="table accordion table-bordered rounded">
+                        <thead class="text-white bg-danger">
+                            <tr>
+                                <th> Nombres </th>
+                                <th> Apellidos </th>
+                                <th> Cédula de identidad </th>
+                                <th> Correo </th>
+                                <th> Rol </th>
+                                <th> Contraseña </th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for trabajador in datosTrabajador %}
+                            <tr>
+                                <td>{{ trabajador.nombres }}</td>
+                                <td>{{ trabajador.apellidos }}</td>
+                                <td>{{ trabajador.cedula_identidad }}</td>
+                                <td>{{ trabajador.correo }}</td>
+                                <td>{{ trabajador.rol }}</td>
+                                <td>{{ trabajador.contrasena }}</td>
+                                <td>
+                                    <form method="post">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="eliminar" value="{{ trabajador.id }}">
+                                        <button class="btn btn" type="submit">
+                                            <i>
+                                                <span class="material-icons">delete</span>
+                                            </i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% if msg %}
+                    <div class="alert alert-success" role="alert">
+                        {{ msg }}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <hr>
+
+        <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <form method="post">
+                            {% csrf_token %}
+                            <div >
+                                <div class="form-control p-3">
+                                    
+                                    <label>Nombres<span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control rounded-3" name="nombres_trab" id="floatingInput"
+                                        placeholder="Ingrese los Nombres" required>
+                                
+                                    <label>Apellidos <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control rounded-3" name="apellidos_trab" id="floatingInput"
+                                        placeholder="Ingrese los Apellidos" required><br>
+                                    <label>Cédula de identidad <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control rounded-3" name="cedula_trab" id="floatingInput"
+                                        placeholder="Ingrese la Cédula" required><br>
+                                    <label>Correo <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control rounded-3" name="correo_trab" id="floatingInput"
+                                        placeholder="Ingrese el Correo" required><br>
+                                    <label>Contraseña <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control rounded-3" name="contrasena_trab" id="floatingInput"
+                                        placeholder="Ingrese la Contraseña" required><br>
+                                    <label>Rol del Trabajador <span class="text-danger">*</span></label>
+                                    <select class="form-select" name="rol_trab" aria-label="Default select example">
+                                        <option selected>Selecione el Rol</option>
+                                        <option value="Profesor">Profesor</option>
+                                        <option value="Admin">Admin</option>
+                                    </select><br>
+                                    <button class="boton-guayaquil w-100" name="crear" type="submit">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>
+</div>
+</div>
+{% endblock content %}
